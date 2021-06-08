@@ -4,11 +4,11 @@
     font-size: 16px;
     font-family: Noto Sans, Roboto, sans-serif;
 
-    --color-text-success: #308800;
-    --color-bg-success: #f0fee6;
+    --color-text-success: #20e02a; // #308800
+    --color-bg-success: #dbffe3; // #f0fee6
 
-    --color-text-error: #800; // #e02020
-    --color-bg-error: #fee6e6; // #ffdbdb
+    --color-text-error: #e02020; // #800
+    --color-bg-error: #ffdbdb; // #fee6e6
 
     --color-text-primary: #1c304b;
     --color-text-secondary: #787878;
@@ -42,6 +42,10 @@ main {
     margin: 0 25%;
 }
 
+p {
+    color: var(--color-text-secondary);
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
     margin-top: 0;
@@ -67,18 +71,26 @@ em {
     color: var(--color-accent);
 }
 
+.success {
+    color: var(--color-text-success);
+}
+
+.error {
+    color: var(--color-text-error);
+}
+
 .alert {
     &.success {
-        color: var(--color-text-success);
         background-color: var(--color-bg-success);
     }
 
     &.error {
-        color: var(--color-text-error);
         background-color: var(--color-bg-error);
     }
 
     & > * {
+        color: inherit;
+
         &:not(:last-child) {
             margin-bottom: 0.5em;
         }

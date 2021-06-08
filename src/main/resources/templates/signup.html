@@ -19,21 +19,21 @@
                            maxlength="32" autocapitalize="none" spellcheck="false"
                            th:autofocus="${!#fields.hasErrors('*') || #fields.hasErrors('displayName')}">
                     <label for="displayName">Display name</label>
-                    <p th:if="${#fields.hasErrors('displayName')}" th:errors="*{displayName}" class="error-message"></p>
+                    <p th:if="${#fields.hasErrors('displayName')}" th:errors="*{displayName}" class="error"></p>
                 </div>
                 <div class="text-field">
                     <input type="text" id="username" th:field="*{username}" autocomplete="username" placeholder=" "
                            maxlength="32" autocapitalize="none" spellcheck="false"
                            th:autofocus="${#fields.hasErrors('username')}">
                     <label for="username">Username</label>
-                    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error-message"></p>
+                    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error"></p>
                 </div>
                 <div class="text-field">
                     <input type="password" id="password" th:field="*{password}" autocomplete="new-password" placeholder=" "
                            maxlength="128" autocorrect="off" autocapitalize="none" spellcheck="false"
                            th:autofocus="${#fields.hasErrors('password')}">
                     <label for="password">Password</label>
-                    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-message"></p>
+                    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></p>
                 </div>
                 <button type="submit" class="large">Sign up</button>
                 <p>Already got an account? <a href="/profile/login">Login</a></p>
