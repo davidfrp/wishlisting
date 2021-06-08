@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" th:href="@{../css/styles.css}">
+        <title>Wishlisting - Sign up</title>
+    </head>
+    <body>
+        <main>
+            <!--/*@thymesVar id="user" type="com.davidfrp.wishlisting.model.User"*/-->
+            <form name="signup" action="#" th:action="@{/profile/signup}" th:object="${user}" th:method="post">
+                <h1>Hi! Create a <em>Wishlisting</em> profile</h1>
+                <section th:if="${#fields.hasErrors('global')}">
+                    <h3 class="error-message">Oops, something went wrong</h3>
+                    <p th:each="error : ${#fields.errors('global')}" th:text="${error}"></p>
+                </section>
+                <div class="text-field">
+                    <input type="text" id="displayName" th:field="*{displayName}" autocomplete="off" placeholder=" "
+                           maxlength="32" autocapitalize="none" spellcheck="false"
+                           th:autofocus="${!#fields.hasErrors('*') || #fields.hasErrors('displayName')}">
+                    <label for="displayName">Display name</label>
+                    <p th:if="${#fields.hasErrors('displayName')}" th:errors="*{displayName}" class="error-message"></p>
+                </div>
+                <div class="text-field">
+                    <input type="text" id="username" th:field="*{username}" autocomplete="username" placeholder=" "
+                           maxlength="32" autocapitalize="none" spellcheck="false"
+                           th:autofocus="${#fields.hasErrors('username')}">
+                    <label for="username">Username</label>
+                    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error-message"></p>
+                </div>
+                <div class="text-field">
+                    <input type="password" id="password" th:field="*{password}" autocomplete="new-password" placeholder=" "
+                           maxlength="128" autocorrect="off" autocapitalize="none" spellcheck="false"
+                           th:autofocus="${#fields.hasErrors('password')}">
+                    <label for="password">Password</label>
+                    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-message"></p>
+                </div>
+                <button type="submit" class="large">Sign up</button>
+                <p>Already got an account? <a href="/profile/login">Login</a></p>
+            </form>
+        </main>
+    </body>
+</html>
