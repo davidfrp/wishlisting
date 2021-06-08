@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" th:href="@{../css/styles.css}">
@@ -7,22 +7,23 @@
     </head>
     <body>
         <main>
+            <!--/*@thymesVar id="user" type="com.davidfrp.wishlisting.model.User"*/-->
             <form name="login" action="#" th:action="@{/profile/login}" th:object="${user}" th:method="post">
                 <h1>Log in to see your <em>wishes</em></h1>
-                <section th:if="${#fields.hasErrors('global')}" class="alert failure">
+                <section th:if="${#fields.hasErrors('global')}" class="alert error">
                     <h3>Oops, something went wrong</h3>
                     <p th:each="error : ${#fields.errors('global')}" th:text="${error}"></p>
                 </section>
                 <div class="text-field">
                     <input type="text" id="username" th:field="*{username}" autocomplete="username" placeholder=" "
-                           maxlength="32" autocorrect="off" autocapitalize="none" spellcheck="false"
+                           maxlength="32" autocapitalize="none" spellcheck="false"
                            th:autofocus="${!#fields.hasErrors('*') || #fields.hasErrors('username')}">
                     <label for="username">Username</label>
                     <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error-message"></p>
                 </div>
                 <div class="text-field">
                     <input type="password" id="password" th:field="*{password}" autocomplete="new-password" placeholder=" "
-                           maxlength="128" autocorrect="off" autocapitalize="none" spellcheck="false"
+                           maxlength="128" autocapitalize="none" spellcheck="false"
                            th:autofocus="${#fields.hasErrors('password')}">
                     <label for="password">Password</label>
                     <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-message"></p>
