@@ -1,5 +1,8 @@
 package com.davidfrp.wishlisting.model;
 
+import com.davidfrp.wishlisting.util.SnowflakeGenerator;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +16,8 @@ public class User {
 
     @Id
     @Column(name = "id", updatable = false)
+    @GeneratedValue(generator = SnowflakeGenerator.GENERATOR_NAME)
+    @GenericGenerator(name = SnowflakeGenerator.GENERATOR_NAME, strategy = "com.davidfrp.wishlisting.util.SnowflakeGenerator")
     private long id;
 
     @Column(name = "username", nullable = false)
