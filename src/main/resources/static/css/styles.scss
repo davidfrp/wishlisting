@@ -24,6 +24,7 @@
 
 * {
     font-size: inherit;
+    font-style: inherit;
     font-family: inherit;
     background-color: inherit;
     color: inherit;
@@ -41,8 +42,33 @@ main {
     margin: 0 25%;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    margin-top: 0;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+h4 {
+    font-size: 1rem;
+}
+
+em {
+    color: var(--color-accent);
+}
+
 .alert {
-    &.succes {
+    &.success {
         color: var(--color-text-success);
         background-color: var(--color-bg-success);
     }
@@ -103,7 +129,8 @@ a {
     z-index: 1;
 
     &:focus-within label, input:not(:placeholder-shown) + label {
-        transform: scale(0.8) translateY(-0.2rem);
+        transform: translateY(-0.2rem);
+        font-size: 0.8rem;
     }
 
     input {
@@ -124,7 +151,7 @@ a {
     label {
         transform-origin: 0;
         transform: translateY(1.75rem);
-        transition: transform 300ms;
+        transition: transform 300ms, font-size 300ms;
         position: absolute;
         z-index: -1;
         left: 0;
