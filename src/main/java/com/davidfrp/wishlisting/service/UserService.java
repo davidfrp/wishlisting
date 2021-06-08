@@ -24,7 +24,7 @@ public class UserService {
     }
 
     public boolean isUsernameAvailable(String username) {
-        return userRepository.findByUsername(username) != null;
+        return userRepository.findByUsername(username) == null;
     }
 
     public boolean doesUsernameAndPasswordMatch(String username, String password) {
