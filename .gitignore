@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Project related ###
+/src/main/resources/application.properties
+/src/main/resources/static/css/*.css
+/src/main/resources/static/css/*.css.map
