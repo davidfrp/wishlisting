@@ -4,6 +4,8 @@ import com.davidfrp.wishlisting.util.SnowflakeGenerator;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(
@@ -20,12 +22,17 @@ public class User {
     @GenericGenerator(name = SnowflakeGenerator.GENERATOR_NAME, strategy = "com.davidfrp.wishlisting.util.SnowflakeGenerator")
     private long id;
 
+    @Size(min = 2, max = 32, message = "Username must be at least {min} characters long.")
     @Column(name = "username", nullable = false)
     private String username;
 
+    @Size(min = 2, max = 32, message = "Display name must be at least {min} characters long.")
     @Column(name = "display_name")
     private String displayName;
 
+    // TODO update regex pattern.
+    @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", message = "Use 8 or more characters with a mix of letters, numbers & symbols.")
+    @Size(max = 128, message = "Password cannot be longer than {max} characters long.")
     @Column(name = "password")
     private String password;
 

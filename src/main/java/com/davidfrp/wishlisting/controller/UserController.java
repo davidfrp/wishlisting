@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @Controller
 public class UserController {
@@ -59,7 +60,7 @@ public class UserController {
     }
 
     @PostMapping("/profile/signup")
-    public String signupPage(@ModelAttribute("user") User user, BindingResult result, HttpSession session) throws Exception {
+    public String signupPage(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session) {
 
         if (result.hasErrors())
             return "signup";
