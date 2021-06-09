@@ -26,8 +26,8 @@
                     <label for="description" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
                            class="error"></label>
                 </div>
-                <label for="isPrivate">Password</label>
                 <input type="checkbox" id="isPrivate" th:field="*{isPrivate}">
+                <label for="isPrivate">Only I can see this wishlist</label>
                 <button type="submit" class="large">Create wishlist</button>
                 <p><a th:href="@{/wishlists}">Cancel</a></p>
             </form>

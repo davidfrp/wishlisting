@@ -127,7 +127,7 @@ a:hover, a:focus {
   margin: 1.75rem 0 0.5rem;
   z-index: 1;
 }
-.text-field input {
+.text-field input[type=text], .text-field input[type=password] {
   border: none;
   border-bottom: 1px var(--color-text-primary) solid;
   background: none;
@@ -135,12 +135,12 @@ a:hover, a:focus {
   padding: 1.725rem 0 0.725rem;
   width: 100%;
 }
-.text-field input:focus {
+.text-field input[type=text]:focus, .text-field input[type=password]:focus {
   color: var(--color-accent);
   border-color: var(--color-accent);
   box-shadow: 0 1px 0 var(--color-accent);
 }
-.text-field input + label {
+.text-field input[type=text] + label, .text-field input[type=password] + label {
   font-size: inherit;
   transform-origin: 0;
   transform: translateY(1.75rem);
@@ -149,13 +149,19 @@ a:hover, a:focus {
   z-index: -1;
   left: 0;
 }
-.text-field:focus-within label, .text-field input:not(:placeholder-shown) + label {
+.text-field:focus-within label,
+.text-field input[type=text]:not(:placeholder-shown) + label,
+.text-field input[type=password]:not(:placeholder-shown) + label {
   transform: translateY(-0.2rem);
   font-size: small;
 }
 .text-field label {
   margin: 0.25rem 0 0;
   font-size: small;
+}
+
+input[type=checkbox] {
+  margin: 1.75rem 0.5rem 0.5rem 0;
 }
 
 /*# sourceMappingURL=styles.css.map */
