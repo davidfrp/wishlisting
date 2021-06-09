@@ -50,7 +50,7 @@ public class UserController {
         User loggedInUser = userService.getUserByUsername(user.getUsername());
 
         session.setAttribute("user_id", loggedInUser.getId());
-        return "redirect:/profile";
+        return "redirect:/wishlists";
     }
 
     @GetMapping("/profile/signup")
@@ -79,6 +79,6 @@ public class UserController {
         }
 
         session.setAttribute("user_id", newlyRegistredUser.getId());
-        return "redirect:/profile";
+        return "redirect:/wishlists";
     }
 }
