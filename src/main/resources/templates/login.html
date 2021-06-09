@@ -29,7 +29,7 @@
                     <label for="password" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></label>
                 </div>
                 <button type="submit" class="large">Log in</button>
-                <p>Don't have an account yet? <a href="/profile/signup">Sign up</a></p>
+                <p>Don't have an account yet? <a th:href="@{/profile/signup}">Sign up</a></p>
             </form>
         </main>
     </body>
