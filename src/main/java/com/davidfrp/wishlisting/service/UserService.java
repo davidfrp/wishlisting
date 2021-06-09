@@ -5,6 +5,8 @@ import com.davidfrp.wishlisting.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
+
 @Service
 public class UserService {
 
@@ -17,6 +19,11 @@ public class UserService {
 
     public User registerUser(String username, String displayName, String password) {
         return userRepository.save(new User(username, displayName, password));
+    }
+
+    public User getUserFromSession(HttpSession session) {
+        Long userId = (Long) session.getAttribute("user_id");
+        return userRepository.findById(userId != null ? userId : 0).orElse(null);
     }
 
     public User getUserByUsername(String username) {
