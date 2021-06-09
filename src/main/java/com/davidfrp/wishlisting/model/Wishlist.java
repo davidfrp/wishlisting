@@ -26,8 +26,8 @@ public class Wishlist {
     private String name;
 
     @Size(min = 2, message = "The description must be at least {min} characters long.")
-    @Size(max = 32, message = "The description cannot be longer than {max} characters long.")
-    @Column(name = "description", length = 32, nullable = false)
+    @Size(max = 128, message = "The description cannot be longer than {max} characters long.")
+    @Column(name = "description", length = 128, nullable = false)
     private String description;
 
     @Column(name = "is_private")
