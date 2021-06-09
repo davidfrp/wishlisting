@@ -30,8 +30,7 @@ public class User {
     @Column(name = "display_name")
     private String displayName;
 
-    // TODO update regex pattern.
-    @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", message = "Use 8 or more characters with a mix of letters, numbers & symbols.")
+    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$", message = "Use 8 or more characters with a mix of letters, numbers & symbols.")
     @Size(max = 128, message = "Password cannot be longer than {max} characters long.")
     @Column(name = "password")
     private String password;
