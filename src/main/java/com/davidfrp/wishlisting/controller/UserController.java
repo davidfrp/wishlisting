@@ -70,7 +70,7 @@ public class UserController {
             return "signup";
         }
 
-        User newlyRegistredUser = userService.registerUser(user.getDisplayName(), user.getUsername(), user.getPassword());
+        User newlyRegistredUser = userService.registerUser(user.getUsername(), user.getDisplayName(), user.getPassword());
 
         if (newlyRegistredUser == null) {
             ObjectError error = new ObjectError("globalError", "Something internally prevented your profile from being created. Try again later.");
