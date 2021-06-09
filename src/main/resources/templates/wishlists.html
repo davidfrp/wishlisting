@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="fragments/layout.html :: head(title = 'Wishlisting - Wishlists')"></head>
+    <body>
+        <main>
+            <!-- /* @thymesVar id="wishlists" type="java.util.List<com.davidfrp.wishlisting.model.Wishlist>" */ -->
+            <h1>Wishlists</h1>
+            <p th:if="${#lists.isEmpty(wishlists)}">You don't have any wishlists</p>
+            <a th:href="@{/wishlists/add}">Add a new wishlist</a>
+            <ul>
+                <!-- /* @thymesVar id="wishlist" type="com.davidfrp.wishlisting.model.Wishlist" */ -->
+                <li th:each="wishlist : ${wishlists}">
+                    <a th:href="@{/wishlists/{wishlistId}(wishlistId=${wishlist.id})}" th:text="${wishlist.name}"></a>
+                </li>
+            </ul>
+        </main>
+    </body>
+</html>
