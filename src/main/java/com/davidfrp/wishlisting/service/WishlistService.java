@@ -1,5 +1,6 @@
 package com.davidfrp.wishlisting.service;
 
+import com.davidfrp.wishlisting.model.Wishlist;
 import com.davidfrp.wishlisting.repository.WishlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,5 +13,9 @@ public class WishlistService {
     @Autowired
     public WishlistService(WishlistRepository wishlistRepository) {
         this.wishlistRepository = wishlistRepository;
+    }
+
+    public Wishlist getWishlistById(long id) {
+        return wishlistRepository.findById(id).orElse(null);
     }
 }
