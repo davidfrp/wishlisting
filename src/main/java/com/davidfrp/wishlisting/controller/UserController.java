@@ -10,6 +10,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -30,13 +31,17 @@ public class UserController {
     }
 
     @GetMapping("/profile/login")
-    public String getLoginPage(Model model) {
+    public String getLoginPage(@RequestParam(name = "redirectTo", required = false) String redirectUrl, Model model) {
         model.addAttribute("user", new User(null, null, null));
+        model.addAttribute("redirectUrl", redirectUrl);
         return "login";
     }
 
     @PostMapping("/profile/login")
-    public String login(@ModelAttribute("user") User user, BindingResult result, HttpSession session) {
+    public String login(@RequestParam(name = "redirectTo", required = false) String redirectUrl,
+                        @ModelAttribute("user") User user,
+                        BindingResult result,
+                        HttpSession session) {
 
         if (result.hasErrors())
             return "login";
@@ -50,7 +55,11 @@ public class UserController {
         User loggedInUser = userService.getUserByUsername(user.getUsername());
 
         session.setAttribute("user_id", loggedInUser.getId());
-        return "redirect:/wishlists";
+
+        if (redirectUrl.isBlank())
+            return "redirect:/wishlists";
+
+        return "redirect:" + redirectUrl;
     }
 
     @GetMapping("/profile/signup")

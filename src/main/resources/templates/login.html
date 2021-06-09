@@ -3,8 +3,9 @@
     <head th:insert="fragments/layout.html :: head(title = 'Wishlisting - Log in')"></head>
     <body>
         <main>
+            <!--/*@thymesVar id="redirectUrl" type="java.lang.String"*/-->
             <!--/*@thymesVar id="user" type="com.davidfrp.wishlisting.model.User"*/-->
-            <form name="login" action="#" th:action="@{/profile/login}" th:object="${user}" th:method="post">
+            <form name="login" action="#" th:action="@{/profile/login(redirectTo=${redirectUrl})}" th:object="${user}" th:method="post">
                 <h1>Log in to see your <em>wishes</em></h1>
                 <section th:if="${#fields.hasErrors('global')}" class="alert error">
                     <h3>Oops, something went wrong</h3>
