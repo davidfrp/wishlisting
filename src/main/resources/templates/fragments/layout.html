@@ -5,4 +5,10 @@
         <title th:text="${title}"></title>
         <link rel="stylesheet" type="text/css" th:href="@{../css/styles.css}">
     </head>
+    <body>
+        <nav th:fragment="navigation" th:remove="tag">
+            <a th:href="@{/wishlists}">Wishlists</a>
+            <a th:href="@{/profile/logout}">Log out</a>
+        </nav>
+    </body>
 </html>

@@ -2,6 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head th:insert="fragments/layout.html :: head(title = 'Wishlisting - Sign up')"></head>
     <body>
+        <nav th:insert="fragments/layout.html :: navigation"></nav>
         <main>
             <!--/*@thymesVar id="user" type="com.davidfrp.wishlisting.model.User"*/-->
             <form name="signup" action="#" th:action="@{/profile/signup}" th:object="${user}" th:method="post">

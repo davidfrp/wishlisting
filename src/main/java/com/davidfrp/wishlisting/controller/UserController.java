@@ -30,10 +30,18 @@ public class UserController {
         return "redirect:/profile/login";
     }
 
+    @GetMapping("/profile/logout")
+    public String getLoginPage(HttpSession session) {
+        session.invalidate();
+        return "redirect:/profile/login";
+    }
+
     @GetMapping("/profile/login")
-    public String getLoginPage(@RequestParam(name = "redirectTo", required = false) String redirectUrl, Model model) {
-        model.addAttribute("user", new User(null, null, null));
+    public String getLoginPage(@RequestParam(name = "redirectTo", required = false) String redirectUrl,
+                               HttpSession session, Model model) {
+
         model.addAttribute("redirectUrl", redirectUrl);
+        model.addAttribute("user", new User(null, null, null));
         return "login";
     }
 
