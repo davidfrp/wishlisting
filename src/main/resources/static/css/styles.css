@@ -28,11 +28,12 @@
 body {
   background: var(--color-bg-primary);
   color: var(--color-text-primary);
+  margin: 0;
 }
 
 main {
-  margin: 0 auto;
-  width: clamp(400px, 25%, 1200px);
+  margin: 6rem auto;
+  width: clamp(400px, 1000px, 50%);
 }
 
 p {
@@ -160,6 +161,40 @@ a:hover, a:focus {
 
 input[type=checkbox] {
   margin: 1.75rem 0.5rem 0.5rem 0;
+}
+
+nav {
+  background-color: var(--color-text-primary);
+  color: var(--color-bg-primary);
+  position: fixed;
+  display: flex;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 5;
+}
+nav ul {
+  list-style-type: none;
+  margin: auto;
+  padding: 0;
+  width: clamp(400px, 1000px, 50%);
+}
+nav ul li {
+  float: left;
+}
+nav ul li:last-of-type {
+  float: right;
+}
+nav ul li a {
+  display: inline-block;
+  color: inherit;
+  padding: 1rem;
+}
+nav ul li a:first-of-type {
+  margin-left: -1rem;
+}
+nav ul li a:last-of-type {
+  margin-right: -1rem;
 }
 
 /*# sourceMappingURL=styles.css.map */

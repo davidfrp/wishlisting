@@ -6,7 +6,7 @@
         <main>
             <!-- /* @thymesVar id="wishlists" type="java.util.List<com.davidfrp.wishlisting.model.Wishlist>" */ -->
             <h1>Wishlists</h1>
-            <p th:if="${#lists.isEmpty(wishlists)}">You don't have any wishlists</p>
+            <p th:if="${#lists.isEmpty(wishlists)}">You don't have any wishlists yet.</p>
             <a th:href="@{/wishlists/add}">Add a new wishlist</a>
             <ul>
                 <!-- /* @thymesVar id="wishlist" type="com.davidfrp.wishlisting.model.Wishlist" */ -->

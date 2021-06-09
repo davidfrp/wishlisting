@@ -6,9 +6,15 @@
         <link rel="stylesheet" type="text/css" th:href="@{../css/styles.css}">
     </head>
     <body>
-        <nav th:fragment="navigation" th:remove="tag">
-            <a th:href="@{/wishlists}">Wishlists</a>
-            <a th:href="@{/profile/logout}">Log out</a>
+        <nav th:fragment="navigation" th:remove="tag" th:if="${session.user_id != null}">
+            <ul>
+                <li>
+                    <a th:href="@{/wishlists}">Wishlists</a>
+                </li>
+                <li>
+                    <a th:href="@{/profile/logout}">Log out</a>
+                </li>
+            </ul>
         </nav>
     </body>
 </html>
