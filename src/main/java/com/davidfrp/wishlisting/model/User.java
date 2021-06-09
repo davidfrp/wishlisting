@@ -22,11 +22,13 @@ public class User {
     @GenericGenerator(name = SnowflakeGenerator.GENERATOR_NAME, strategy = "com.davidfrp.wishlisting.util.SnowflakeGenerator")
     private long id;
 
-    @Size(min = 2, max = 32, message = "Username must be at least {min} characters long.")
+    @Size(min = 2, message = "Username must be at least {min} characters long.")
+    @Size(max = 32, message = "Username cannot be longer than {max} characters long.")
     @Column(name = "username", length = 32, nullable = false)
     private String username;
 
-    @Size(min = 2, max = 32, message = "Display name must be at least {min} characters long.")
+    @Size(min = 2, message = "Display name must be at least {min} characters long.")
+    @Size(max = 32, message = "Display name cannot be longer than {max} characters long.")
     @Column(name = "display_name", length = 32, nullable = false)
     private String displayName;
 
