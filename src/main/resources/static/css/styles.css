@@ -127,10 +127,6 @@ a:hover, a:focus {
   margin: 1.75rem 0 0.5rem;
   z-index: 1;
 }
-.text-field:focus-within label, .text-field input:not(:placeholder-shown) + label {
-  transform: translateY(-0.2rem);
-  font-size: 0.8rem;
-}
 .text-field input {
   border: none;
   border-bottom: 1px var(--color-text-primary) solid;
@@ -144,7 +140,8 @@ a:hover, a:focus {
   border-color: var(--color-accent);
   box-shadow: 0 1px 0 var(--color-accent);
 }
-.text-field label {
+.text-field input + label {
+  font-size: inherit;
   transform-origin: 0;
   transform: translateY(1.75rem);
   transition: transform 300ms, font-size 300ms;
@@ -152,9 +149,13 @@ a:hover, a:focus {
   z-index: -1;
   left: 0;
 }
-.text-field p {
+.text-field:focus-within label, .text-field input:not(:placeholder-shown) + label {
+  transform: translateY(-0.2rem);
+  font-size: small;
+}
+.text-field label {
   margin: 0.25rem 0 0;
-  font-size: 0.8rem;
+  font-size: small;
 }
 
 /*# sourceMappingURL=styles.css.map */
