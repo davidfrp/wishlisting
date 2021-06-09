@@ -141,7 +141,7 @@ a {
     margin: 1.75rem 0 0.5rem;
     z-index: 1;
 
-    input[type="text"], input[type="password"] {
+    input {
         border: none;
         border-bottom: 1px var(--color-text-primary) solid;
         background: none;
@@ -166,9 +166,7 @@ a {
         }
     }
 
-    &:focus-within label,
-    input[type="text"]:not(:placeholder-shown) + label,
-    input[type="password"]:not(:placeholder-shown) + label {
+    &:focus-within label, input:not(:placeholder-shown) + label {
         transform: translateY(-0.2rem);
         font-size: small;
     }
