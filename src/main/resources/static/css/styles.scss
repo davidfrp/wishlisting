@@ -30,7 +30,6 @@
     color: inherit;
     box-sizing: border-box;
     outline: none;
-    margin: 0;
 }
 
 body {
@@ -39,7 +38,8 @@ body {
 }
 
 main {
-    margin: 0 25%;
+    margin: 0 auto;
+    width: clamp(400px, 25%, 1200px);
 }
 
 p {
@@ -90,9 +90,10 @@ em {
 
     & > * {
         color: inherit;
+        margin-bottom: 0.5em;
 
-        &:not(:last-child) {
-            margin-bottom: 0.5em;
+        &:last-child {
+            margin-bottom: 0;
         }
     }
 }
@@ -111,7 +112,7 @@ button, a.button {
     border-radius: var(--border-radius);
     background: var(--color-accent);
     color: var(--color-bg-primary);
-    margin: 1.5rem 0;
+    margin: 1.5rem 0 0.5rem;
     padding: 1rem 1.75rem;
     border: none;
     font-weight: bold;
@@ -169,7 +170,7 @@ a {
         left: 0;
     }
 
-    .error {
+    p {
         margin: 0.25rem 0 0;
         font-size: 0.8rem;
     }

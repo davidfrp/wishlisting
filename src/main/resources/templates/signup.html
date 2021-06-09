@@ -34,6 +34,7 @@
                            th:autofocus="${#fields.hasErrors('password')}">
                     <label for="password">Password</label>
                     <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></p>
+                    <p th:if="${#fields.hasErrors('password')}">Symbols include: @ $ ! % * # ? &amp;</p>
                 </div>
                 <button type="submit" class="large">Sign up</button>
                 <p>Already got an account? <a href="/profile/login">Login</a></p>
