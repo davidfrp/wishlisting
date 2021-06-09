@@ -18,4 +18,8 @@ public class WishlistService {
     public Wishlist getWishlistById(long id) {
         return wishlistRepository.findById(id).orElse(null);
     }
+
+    public Wishlist createWishlist(Wishlist wishlist) {
+        return wishlistRepository.save(wishlist);
+    }
 }
