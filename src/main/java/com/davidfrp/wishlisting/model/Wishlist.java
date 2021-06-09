@@ -17,7 +17,7 @@ public class Wishlist {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "author_id")
+    @JoinColumn(name = "author_id", nullable = false)
     private User author;
 
     @Size(min = 2, message = "Wishlist name must be at least {min} characters long.")
