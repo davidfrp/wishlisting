@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="fragments/layout.html :: head(title = 'Wishlisting - Create wishlist')"></head>
+    <body>
+        <main>
+            <!--/*@thymesVar id="wishlist" type="com.davidfrp.wishlisting.model.Wishlist"*/-->
+            <form name="signup" action="#" th:action="@{/wishlists/add}" th:object="${wishlist}" th:method="post">
+                <h1>Create a new <em>wishlist</em></h1>
+                <p>You can add wishes once the wishlist has been created.</p>
+                <section th:if="${#fields.hasErrors('global')}">
+                    <h3 class="error-message">Oops, something went wrong</h3>
+                    <p th:each="error : ${#fields.errors('global')}" th:text="${error}"></p>
+                </section>
+                <div class="text-field">
+                    <input type="text" id="name" th:field="*{name}" autocomplete="off" placeholder=" "
+                           maxlength="32" autocapitalize="none" spellcheck="false"
+                           th:autofocus="${!#fields.hasErrors('*') || #fields.hasErrors('name')}">
+                    <label for="name">Wishlist name</label>
+                    <label for="name" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></label>
+                </div>
+                <div class="text-field">
+                    <input type="text" id="description" th:field="*{description}" autocomplete="username" placeholder=" "
+                           maxlength="128" autocapitalize="none" spellcheck="false"
+                           th:autofocus="${#fields.hasErrors('description')}">
+                    <label for="description">Description</label>
+                    <label for="description" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+                           class="error"></label>
+                </div>
+                <label for="isPrivate">Password</label>
+                <input type="checkbox" id="isPrivate" th:field="*{isPrivate}">
+                <button type="submit" class="large">Create wishlist</button>
+                <p><a th:href="@{/wishlists}">Cancel</a></p>
+            </form>
+        </main>
+    </body>
+</html>
