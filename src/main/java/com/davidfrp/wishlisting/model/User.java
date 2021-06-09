@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(
@@ -37,6 +38,9 @@ public class User {
     @Column(name = "password", length = 128, nullable = false)
     private String password;
 
+    @OneToMany(mappedBy = "author")
+    private List<Wishlist> wishlists;
+
     protected User() { }
 
     public User(String username, String displayName, String password) {
@@ -59,5 +63,9 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public List<Wishlist> getWishlists() {
+        return wishlists;
     }
 }
