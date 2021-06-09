@@ -1,0 +1,160 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+:root {
+  font-size: 16px;
+  font-family: Noto Sans, Roboto, sans-serif;
+  --color-text-success: #20e02a;
+  --color-bg-success: #dbffe3;
+  --color-text-error: #e02020;
+  --color-bg-error: #ffdbdb;
+  --color-text-primary: #1c304b;
+  --color-text-secondary: #787878;
+  --color-bg-primary: #edeffc;
+  --color-bg-secondary: #3c3c55;
+  --color-accent: #bf3078;
+  --secondary-accent-color: #22b83a;
+  --border-radius: 0.25em;
+}
+
+* {
+  font-size: inherit;
+  font-style: inherit;
+  font-family: inherit;
+  background-color: inherit;
+  color: inherit;
+  box-sizing: border-box;
+  outline: none;
+}
+
+body {
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+main {
+  margin: 0 auto;
+  width: clamp(400px, 25%, 1200px);
+}
+
+p {
+  color: var(--color-text-secondary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+h4 {
+  font-size: 1rem;
+}
+
+em {
+  color: var(--color-accent);
+}
+
+.success {
+  color: var(--color-text-success);
+}
+
+.error {
+  color: var(--color-text-error);
+}
+
+.alert.success {
+  background-color: var(--color-bg-success);
+}
+.alert.error {
+  background-color: var(--color-bg-error);
+}
+.alert > * {
+  color: inherit;
+  margin-bottom: 0.5em;
+}
+.alert > *:last-child {
+  margin-bottom: 0;
+}
+
+section {
+  padding: 1rem;
+  border-radius: var(--border-radius);
+}
+
+form {
+  max-width: 460px;
+  margin: auto;
+}
+
+button, a.button {
+  border-radius: var(--border-radius);
+  background: var(--color-accent);
+  color: var(--color-bg-primary);
+  margin: 1.5rem 0 0.5rem;
+  padding: 1rem 1.75rem;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  outline: revert;
+}
+button.large, a.button.large {
+  padding: 1.5rem;
+  width: 100%;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  outline: revert;
+}
+a:hover, a:focus {
+  text-decoration: underline;
+}
+
+.text-field {
+  position: relative;
+  margin: 1.75rem 0 0.5rem;
+  z-index: 1;
+}
+.text-field:focus-within label, .text-field input:not(:placeholder-shown) + label {
+  transform: translateY(-0.2rem);
+  font-size: 0.8rem;
+}
+.text-field input {
+  border: none;
+  border-bottom: 1px var(--color-text-primary) solid;
+  background: none;
+  color: var(--color-text-primary);
+  padding: 1.725rem 0 0.725rem;
+  width: 100%;
+}
+.text-field input:focus {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: 0 1px 0 var(--color-accent);
+}
+.text-field label {
+  transform-origin: 0;
+  transform: translateY(1.75rem);
+  transition: transform 300ms, font-size 300ms;
+  position: absolute;
+  z-index: -1;
+  left: 0;
+}
+.text-field p {
+  margin: 0.25rem 0 0;
+  font-size: 0.8rem;
+}
+
+/*# sourceMappingURL=styles.css.map */
