@@ -76,12 +76,23 @@ public class WishlistController {
     }
 
     @GetMapping("/wishlists/{id}")
-    public String getWishlistsPage(@PathVariable("id") long wishlistId, Model model) {
+    public String getWishlistsPage(@PathVariable("id") long wishlistId, Model model, HttpSession session) {
 
         Wishlist wishlist = wishlistService.getWishlistById(wishlistId);
 
         if (wishlist == null)
-            return "redirect:/wishlists";
+            return "error/404";
+
+        User loggedInUser = userService.getUserFromSession(session);
+
+        if (wishlist.getIsPrivate()) {
+
+            if (loggedInUser == null)
+                return "redirect:/profile/login?redirectTo=/wishlists/" + wishlist.getId();
+
+            if (loggedInUser.getId() != wishlist.getAuthor().getId())
+                return "error/403";
+        }
 
         model.addAttribute("wishlist", wishlist);
         return "wishlist";
