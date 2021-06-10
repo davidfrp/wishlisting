@@ -34,7 +34,7 @@ public class WishController {
     }
 
     @GetMapping("/wishlists/{id}/add")
-    public String createWishlist(@PathVariable("id") long wishlistId, Model model, HttpSession session) {
+    public String createWish(@PathVariable("id") long wishlistId, Model model, HttpSession session) {
 
         Wishlist wishlist = wishlistService.getWishlistById(wishlistId);
 
@@ -50,8 +50,8 @@ public class WishController {
     }
 
     @PostMapping("/wishlists/{id}/add")
-    public String createWishlist(@PathVariable("id") long wishlistId, @Valid @ModelAttribute("wish") Wish wish,
-                                 BindingResult result, HttpSession session) {
+    public String createWish(@PathVariable("id") long wishlistId, @Valid @ModelAttribute("wish") Wish wish,
+                             BindingResult result, HttpSession session) {
 
         User author = userService.getUserFromSession(session);
 
