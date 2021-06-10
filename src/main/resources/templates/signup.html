@@ -5,7 +5,7 @@
         <nav th:insert="fragments/layout.html :: navigation"></nav>
         <main>
             <!--/*@thymesVar id="user" type="com.davidfrp.wishlisting.model.User"*/-->
-            <form name="signup" action="#" th:action="@{/profile/signup}" th:object="${user}" th:method="post">
+            <form action="#" th:action="@{/profile/signup}" th:object="${user}" th:method="post">
                 <h1>Hi! Create a <em>Wishlisting</em> profile</h1>
                 <section th:if="${#fields.hasErrors('global')}">
                     <h3 class="error-message">Oops, something went wrong</h3>

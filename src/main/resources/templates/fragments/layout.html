@@ -9,9 +9,10 @@
         <nav th:fragment="navigation" th:remove="tag" th:if="${session.user_id != null}">
             <ul>
                 <li>
-                    <a th:href="@{/wishlists}">Wishlists</a>
+                    <a th:href="@{/wishlists}">My wishlists</a>
                 </li>
                 <li>
+                    <p th:text="${session.user_display_name}"></p>
                     <a th:href="@{/profile/logout}">Log out</a>
                 </li>
             </ul>

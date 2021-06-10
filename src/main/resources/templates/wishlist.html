@@ -5,9 +5,10 @@
         <nav th:insert="fragments/layout.html :: navigation"></nav>
         <main>
             <!-- /* @thymesVar id="wishlist" type="com.davidfrp.wishlisting.model.Wishlist" */ -->
-            <h1>Wishlist</h1>
-            <p th:if="${#lists.isEmpty(wishlist.wishes)}">You don't have any wishes yet.</p>
-            <a th:href="@{/wishlists/{wishlistId}/add(wishlistId=${wishlist.id})}">Add a new wish</a>
+            <h1 th:text="${wishlist.name}"></h1><span th:if="${wishlist.isPrivate}" class="tag" title="Only you can see this wishlist.">Private</span>
+            <p th:text="${wishlist.description}"></p>
+            <p th:if="${#lists.isEmpty(wishlist.wishes)}">There aren't any wishes yet.</p>
+            <a th:href="@{/wishlists/{wishlistId}/add(wishlistId=${wishlist.id})}" th:if="${session.user_id == wishlist.author.id}">Add a new wish</a>
             <ul>
                 <li th:each="wish : ${wishlist.wishes}">
                     <p th:text="${wish.description}"></p>

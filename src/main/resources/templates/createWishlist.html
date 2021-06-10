@@ -5,7 +5,7 @@
         <nav th:insert="fragments/layout.html :: navigation"></nav>
         <main>
             <!--/*@thymesVar id="wishlist" type="com.davidfrp.wishlisting.model.Wishlist"*/-->
-            <form name="signup" action="#" th:action="@{/wishlists/add}" th:object="${wishlist}" th:method="post">
+            <form action="#" th:action="@{/wishlists/add}" th:object="${wishlist}" th:method="post">
                 <h1>Create a new <em>wishlist</em></h1>
                 <p>You can add wishes once the wishlist has been created.</p>
                 <section th:if="${#fields.hasErrors('global')}">
