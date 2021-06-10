@@ -3,17 +3,28 @@
     <head th:fragment="head(title)" th:remove="tag">
         <meta charset="UTF-8">
         <title th:text="${title}"></title>
-        <link rel="stylesheet" type="text/css" th:href="@{../css/styles.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/../css/styles.css}">
     </head>
     <body>
-        <nav th:fragment="navigation" th:remove="tag" th:if="${session.user_id != null}">
+        <nav th:fragment="navigation" th:remove="tag">
             <ul>
-                <li>
-                    <a th:href="@{/wishlists}">My wishlists</a>
-                </li>
-                <li>
-                    <p th:text="${session.user_display_name}"></p>
-                    <a th:href="@{/profile/logout}">Log out</a>
+                <span th:if="${session.user_id != null}" th:remove="tag">
+                    <li>
+                        <a th:classappend="${#httpServletRequest.getRequestURI() == '/wishlists' ? 'active' : ''}"
+                           th:href="@{/wishlists}">My wishlists</a>
+                    </li>
+                    <li>
+                        <p th:text="${session.user_display_name}"></p>
+                        <a th:href="@{/profile/logout}">Log out</a>
+                    </li>
+                </span>
+                <li th:if="${session.user_id == null}">
+                    <a th:classappend="${#httpServletRequest.getRequestURI() == '/profile/login' ? 'active' : ''}"
+                       th:href="@{/profile/login(redirectTo=${#httpServletRequest.getRequestURI() == '/profile/signup' ? '' : #httpServletRequest.getRequestURI()})}">Log in</a>
+                    <span th:if="${#httpServletRequest.getRequestURI() != '/profile/login' &&
+                                   #httpServletRequest.getRequestURI() != '/profile/signup'}">/</span>
+                    <a th:classappend="${#httpServletRequest.getRequestURI() == '/profile/signup' ? 'active' : ''}"
+                       th:href="@{/profile/signup}">Sign up</a>
                 </li>
             </ul>
         </nav>

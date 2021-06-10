@@ -45,7 +45,7 @@ public class WishController {
             return "redirect:/profile/login?redirectTo=/wishlists/" + wishlistId;
 
         model.addAttribute("wish", new Wish(null, null, null));
-        model.addAttribute("wishlist", new Wishlist(null, null, null, true));
+        model.addAttribute("wishlist", wishlist);
         return "createWish";
     }
 
