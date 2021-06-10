@@ -4,7 +4,7 @@
     <body>
         <nav th:insert="fragments/layout.html :: navigation"></nav>
         <main>
-            <!-- /* @thymesVar id="wishlist" type="com.davidfrp.wishlisting.model.Wishlist" */ -->
+            <!--/*@thymesVar id="wishlist" type="com.davidfrp.wishlisting.model.Wishlist"*/-->
             <header>
                 <h1 th:text="${wishlist.name}"></h1>
                 <span th:if="${wishlist.isPrivate}" class="tag" title="Only you can see this wishlist.">Private</span>
@@ -15,12 +15,21 @@
             <ul class="wishes">
                 <li th:each="wish : ${wishlist.wishes}">
                     <p th:text="${wish.description}" th:title="${wish.description}"></p>
+
                     <span th:if="${session.user_id != null}" th:remove="tag">
-                        <a th:if="${session.user_id == wishlist.author.id}" href="#">Delete</a>
-                        <span th:if="${session.user_id != wishlist.author.id && wish.appointee == null}" th:remove="tag">
+
+                        <a th:href="@{/wishlists/{wishlistId}/{wishId}/delete(wishlistId=${wishlist.id}, wishId=${wish.id})}"
+                           th:if="${session.user_id == wishlist.author.id}">Delete</a>
+
+                        <span th:if="${session.user_id != wishlist.author.id}" th:remove="tag">
+
                             <a th:href="@{/wishlists/{wishlistId}/{wishId}/reserve(wishlistId=${wishlist.id}, wishId=${wish.id})}"
                                th:if="${wish.appointee == null}">Reserve</a>
+
                             <p th:if="${wish.appointee != null}" th:text="|Reserved by: ${wish.appointee.displayName}|"></p>
+
+                            <a th:href="@{/wishlists/{wishlistId}/{wishId}/unreserve(wishlistId=${wishlist.id}, wishId=${wish.id})}"
+                               th:if="${wish.appointee?.id == session.user_id}">Undo</a>
                         </span>
                     </span>
                 </li>

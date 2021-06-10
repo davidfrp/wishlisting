@@ -11,21 +11,21 @@
                     <h3 class="error-message">Oops, something went wrong</h3>
                     <p th:each="error : ${#fields.errors('global')}" th:text="${error}"></p>
                 </section>
-                <div class="text-field">
+                <div class="input-wrap">
                     <input type="text" id="displayName" th:field="*{displayName}" autocomplete="off" placeholder=" "
                            maxlength="32" autocapitalize="none" spellcheck="false"
                            th:autofocus="${!#fields.hasErrors('*') || #fields.hasErrors('displayName')}">
                     <label for="displayName">Display name</label>
                     <label for="displayName" th:if="${#fields.hasErrors('displayName')}" th:errors="*{displayName}" class="error"></label>
                 </div>
-                <div class="text-field">
+                <div class="input-wrap">
                     <input type="text" id="username" th:field="*{username}" autocomplete="username" placeholder=" "
                            maxlength="32" autocapitalize="none" spellcheck="false"
                            th:autofocus="${#fields.hasErrors('username')}">
                     <label for="username">Username</label>
                     <label for="username" th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error"></label>
                 </div>
-                <div class="text-field">
+                <div class="input-wrap">
                     <input type="password" id="password" th:field="*{password}" autocomplete="new-password" placeholder=" "
                            maxlength="128" autocapitalize="none" spellcheck="false"
                            th:autofocus="${#fields.hasErrors('password')}">

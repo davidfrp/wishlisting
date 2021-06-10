@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head th:fragment="head(title)" th:remove="tag">
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title th:text="${title}"></title>
         <link rel="stylesheet" type="text/css" th:href="@{/../css/styles.css}">
     </head>
@@ -22,7 +23,7 @@
                     <a th:classappend="${#httpServletRequest.getRequestURI() == '/profile/login' ? 'active' : ''}"
                        th:href="@{/profile/login(redirectTo=${#httpServletRequest.getRequestURI() == '/profile/signup' ? '' : #httpServletRequest.getRequestURI()})}">Log in</a>
                     <span th:if="${#httpServletRequest.getRequestURI() != '/profile/login' &&
-                                   #httpServletRequest.getRequestURI() != '/profile/signup'}">/</span>
+                                   #httpServletRequest.getRequestURI() != '/profile/signup'}" th:remove="tag">/</span>
                     <a th:classappend="${#httpServletRequest.getRequestURI() == '/profile/signup' ? 'active' : ''}"
                        th:href="@{/profile/signup}">Sign up</a>
                 </li>

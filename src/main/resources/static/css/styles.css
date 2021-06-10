@@ -6,12 +6,13 @@
   --color-red-light: #ffdbdb;
   --color-blue: #1c304b;
   --color-blue-light: #b5c4d7;
+  --color-darken: #00000030;
   --color-gray: #676873;
   --color-bg: #edeffc;
   --color-accent: #bf3078;
   --color-accent-hover: #cb337f;
   --border-radius: 0.25em;
-  --border-width: 2px;
+  --border-width: 1px;
 }
 
 * {
@@ -32,18 +33,35 @@ body {
 }
 
 main {
-  margin: 7rem auto;
+  margin: 7rem auto 0;
   width: clamp(400px, 850px, 50%);
+}
+@media only screen and (max-width: 500px) {
+  main {
+    margin-top: 5rem;
+    padding: 0 1.5rem;
+    width: 100%;
+  }
 }
 
 header {
   display: flex;
   align-items: center;
+  margin-bottom: 1.34rem;
+}
+header * {
+  margin: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: bold;
   color: var(--color-blue);
+  font-weight: bold;
+}
+h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child {
+  margin-top: 0;
+}
+h1:last-child, h2:last-child, h3:last-child, h4:last-child, h5:last-child, h6:last-child {
+  margin-bottom: 0;
 }
 
 h1 {
@@ -66,17 +84,10 @@ em {
   color: var(--color-accent);
 }
 
-.success {
-  color: var(--color-text-success);
-}
-
 .error {
   color: var(--color-red);
 }
 
-.alert.success {
-  background-color: var(--color-bg-success);
-}
 .alert.error {
   background-color: var(--color-red-light);
 }
@@ -130,25 +141,25 @@ a:hover, a:focus {
   color: var(--color-accent-hover);
 }
 
-.text-field {
+.input-wrap {
   position: relative;
   margin: 1.75rem 0 0.5rem;
   z-index: 1;
 }
-.text-field input {
+.input-wrap input {
   border: none;
-  border-bottom: 1px var(--color-blue) solid;
+  border-bottom: var(--border-width) var(--color-blue) solid;
   background: none;
   color: var(--color-blue);
   padding: 1.725rem 0 0.725rem;
   width: 100%;
 }
-.text-field input:focus {
+.input-wrap input:focus {
   color: var(--color-accent);
   border-color: var(--color-accent);
-  box-shadow: 0 1px 0 var(--color-accent);
+  box-shadow: 0 var(--border-width) 0 var(--color-accent);
 }
-.text-field input + label {
+.input-wrap input + label {
   font-size: inherit;
   transform-origin: 0;
   transform: translateY(1.75rem);
@@ -158,12 +169,11 @@ a:hover, a:focus {
   margin: 0;
   left: 0;
 }
-.text-field:focus-within label, .text-field input:not(:placeholder-shown) + label {
+.input-wrap:focus-within label, .input-wrap input:not(:placeholder-shown) + label {
   transform: translateY(-0.2rem);
-  color: var(--color-blue);
   font-size: 0.9rem;
 }
-.text-field label {
+.input-wrap label {
   margin: 0.25rem 0 0;
   font-size: 0.9rem;
 }
@@ -186,6 +196,12 @@ nav ul {
   margin: auto;
   padding: 0;
   width: clamp(400px, 850px, 50%);
+}
+@media only screen and (max-width: 500px) {
+  nav ul {
+    padding: 0 1.5rem;
+    width: 100%;
+  }
 }
 nav ul li {
   color: var(--color-blue-light);
@@ -214,20 +230,6 @@ nav ul li a.active {
   display: none;
 }
 
-hr {
-  border-style: dashed;
-  border-width: var(--border-width);
-  border-color: var(--color-blue);
-  margin: 2.5rem 0;
-}
-
-[rel=author] {
-  color: var(--color-blue);
-  font-weight: bold;
-  font-size: larger;
-  margin-top: 0;
-}
-
 .tag {
   background-color: var(--color-accent);
   color: var(--color-bg);
@@ -236,6 +238,7 @@ hr {
   user-select: none;
   display: inline-block;
   margin-left: 1rem;
+  font-size: 1rem;
 }
 
 ul.wishes {
@@ -245,20 +248,27 @@ ul.wishes {
 ul.wishes li {
   display: flex;
   align-items: center;
-  padding: 1rem;
-  border-bottom: var(--border-width) solid var(--color-blue-light);
+  padding: 1rem 0;
+  border-bottom: var(--border-width) solid var(--color-darken);
 }
 ul.wishes li:last-of-type {
   border-bottom: none;
 }
-ul.wishes li p {
+ul.wishes li * {
   white-space: nowrap;
+  margin-right: 1rem;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+ul.wishes li *:first-child {
   text-overflow: ellipsis;
   overflow: hidden;
-  margin: 0;
 }
-ul.wishes li a {
+ul.wishes li *:nth-child(2) {
   margin-left: auto;
+}
+ul.wishes li *:last-child {
+  margin-right: 0;
 }
 
 /*# sourceMappingURL=styles.css.map */
