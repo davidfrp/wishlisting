@@ -77,6 +77,63 @@ public class WishController {
         return "redirect:/wishlists/" + wishlistId;
     }
 
+    @GetMapping("/wishlists/{wishlistId}/{wishId}/reserve")
+    public String reserveWish(@PathVariable("wishlistId") long wishlistId,
+                              @PathVariable("wishId") long wishId,
+                              HttpSession session) {
+
+        User appointee = userService.getUserFromSession(session);
+
+        if (appointee == null)
+            return "redirect:/profile/login?redirectTo=/wishlists/" + wishlistId;
+
+        Wishlist wishlist = wishlistService.getWishlistById(wishlistId);
+
+        if (wishlist == null)
+            return "error/404";
+
+        Wish wish = wishService.getWishById(wishId);
+
+        if (wish == null)
+            return "error/404";
+
+        if (appointee.getId() == wishlist.getAuthor().getId())
+            return "error/403";
+
+        wishService.reserveWish(wish, appointee);
+
+        return "redirect:/wishlists/" + wishlistId;
+    }
+
+    @GetMapping("/wishlists/{wishlistId}/{wishId}/unreserve")
+    public String unreserveWish(@PathVariable("wishlistId") long wishlistId,
+                                @PathVariable("wishId") long wishId,
+                                HttpSession session) {
+
+        User appointee = userService.getUserFromSession(session);
+
+        if (appointee == null)
+            return "redirect:/profile/login?redirectTo=/wishlists/" + wishlistId;
+
+        Wishlist wishlist = wishlistService.getWishlistById(wishlistId);
+
+        if (wishlist == null)
+            return "error/404";
+
+        Wish wish = wishService.getWishById(wishId);
+
+        if (wish == null)
+            return "error/404";
+
+        if (appointee.getId() == wishlist.getAuthor().getId())
+            return "error/403";
+
+        if (wish.getAppointee() != null && wish.getAppointee().getId() == appointee.getId())
+            wishService.unreserveWish(wish, appointee);
+
+        return "redirect:/wishlists/" + wishlistId;
+    }
+
     @GetMapping("/wishlists/{wishlistId}/{wishId}/delete")
     public String deleteWish(@PathVariable("wishlistId") long wishlistId,
                                 @PathVariable("wishId") long wishId,
