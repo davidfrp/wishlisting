@@ -76,4 +76,30 @@ public class WishController {
 
         return "redirect:/wishlists/" + wishlistId;
     }
+
+    @GetMapping("/wishlists/{wishlistId}/{wishId}/delete")
+    public String deleteWish(@PathVariable("wishlistId") long wishlistId,
+                                @PathVariable("wishId") long wishId,
+                                HttpSession session) {
+
+        User author = userService.getUserFromSession(session);
+
+        if (author == null)
+            return "redirect:/profile/login?redirectTo=/wishlists/" + wishlistId;
+
+        Wishlist wishlist = wishlistService.getWishlistById(wishlistId);
+
+        if (wishlist == null)
+            return "error/404";
+
+        Wish wish = wishService.getWishById(wishId);
+
+        if (wish == null)
+            return "error/404";
+
+        if (author.getId() == wishlist.getAuthor().getId())
+            wishService.deleteWish(wish);
+
+        return "redirect:/wishlists/" + wishlistId;
+    }
 }
