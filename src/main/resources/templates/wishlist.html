@@ -26,7 +26,7 @@
                             <a th:href="@{/wishlists/{wishlistId}/{wishId}/reserve(wishlistId=${wishlist.id}, wishId=${wish.id})}"
                                th:if="${wish.appointee == null}">Reserve</a>
 
-                            <p th:if="${wish.appointee != null}" th:text="|Reserved by: ${wish.appointee.displayName}|"></p>
+                            <p th:if="${wish.appointee != null}" th:text="|${wish.appointee.displayName} reserved this|"></p>
 
                             <a th:href="@{/wishlists/{wishlistId}/{wishId}/unreserve(wishlistId=${wishlist.id}, wishId=${wish.id})}"
                                th:if="${wish.appointee?.id == session.user_id}">Undo</a>

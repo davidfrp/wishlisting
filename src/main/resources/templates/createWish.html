@@ -13,6 +13,7 @@
                     <h3 class="error-message">Oops, something went wrong</h3>
                     <p th:each="error : ${#fields.errors('global')}" th:text="${error}"></p>
                 </section>
+                <p>Preferable keep the description short. A few words at most, and try to refrain from forming whole sentences.</p>
                 <div class="input-wrap">
                     <input type="text" id="description" th:field="*{description}" autocomplete="username" placeholder=" "
                            maxlength="128" autocapitalize="none" spellcheck="false"
