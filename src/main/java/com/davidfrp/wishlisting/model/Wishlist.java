@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "wishlists")
@@ -33,6 +34,9 @@ public class Wishlist {
     @Column(name = "is_private")
     private boolean isPrivate;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "wishlist", orphanRemoval = true)
+    private List<Wish> wishes;
+
     protected Wishlist() { }
 
     public Wishlist(User author, String name, String description, boolean isPrivate) {
@@ -60,5 +64,9 @@ public class Wishlist {
 
     public boolean getIsPrivate() {
         return isPrivate;
+    }
+
+    public List<Wish> getWishes() {
+        return wishes;
     }
 }
