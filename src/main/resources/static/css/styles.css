@@ -6,13 +6,13 @@
   --color-red-light: #ffdbdb;
   --color-blue: #1c304b;
   --color-blue-light: #b5c4d7;
-  --color-darken: #00000030;
+  --color-darken: #00000012;
   --color-gray: #676873;
   --color-bg: #edeffc;
   --color-accent: #bf3078;
   --color-accent-hover: #cb337f;
   --border-radius: 0.25em;
-  --border-width: 1px;
+  --border-width: 2px;
 }
 
 * {
@@ -38,7 +38,7 @@ main {
 }
 @media only screen and (max-width: 500px) {
   main {
-    margin-top: 5rem;
+    margin-top: 6rem;
     padding: 0 1.5rem;
     width: 100%;
   }
@@ -46,11 +46,19 @@ main {
 
 header {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   margin-bottom: 1.34rem;
 }
 header * {
   margin: 0;
+}
+header [rel=author] {
+  flex-basis: 100%;
+  font-size: 2rem;
+}
+header [rel=author]::before {
+  content: "Lavet af ";
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -103,12 +111,15 @@ em {
 .alert.error {
   background-color: var(--color-red-light);
 }
-.alert > * {
+.alert * {
   color: inherit;
   margin-top: 0;
   margin-bottom: 0.5em;
 }
-.alert > *:last-child {
+.alert :first-child {
+  font-size: 1.5rem;
+}
+.alert :last-child {
   margin-bottom: 0;
 }
 
@@ -148,7 +159,6 @@ button, a.button {
   background: var(--color-accent);
   color: var(--color-bg);
   display: inline-block;
-  margin: 1.5rem 0 0.5rem;
   padding: 0.75rem 1.25rem;
   border: none;
   font-weight: 500;
@@ -164,6 +174,7 @@ button:hover, a.button:hover {
   text-decoration: none;
 }
 button.large, a.button.large {
+  margin: 1.5rem 0 0.5rem;
   padding: 1.5rem;
   width: 100%;
 }
@@ -182,7 +193,7 @@ button:focus:not(:hover):not(:active), a.button:focus:not(:hover):not(:active) {
 }
 .input-wrap input {
   border: none;
-  border-bottom: var(--border-width) var(--color-blue) solid;
+  border-bottom: 1px var(--color-blue) solid;
   background: none;
   color: var(--color-blue);
   padding: 1.725rem 0 0.725rem;
@@ -191,7 +202,7 @@ button:focus:not(:hover):not(:active), a.button:focus:not(:hover):not(:active) {
 .input-wrap input:focus {
   color: var(--color-accent);
   border-color: var(--color-accent);
-  box-shadow: 0 var(--border-width) 0 var(--color-accent);
+  box-shadow: 0 2px 0 var(--color-accent);
 }
 .input-wrap input + label {
   font-size: inherit;
@@ -277,13 +288,14 @@ nav ul li a.active {
 }
 
 ul.wishes {
+  color: var(--color-blue);
   padding: 0;
   margin: 0;
 }
 ul.wishes li {
   display: flex;
   align-items: center;
-  padding: 1rem 0;
+  padding: 1.25rem 0;
   border-bottom: var(--border-width) solid var(--color-darken);
 }
 ul.wishes li:last-of-type {

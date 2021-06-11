@@ -8,7 +8,7 @@
             <form action="#" th:action="@{/profile/signup}" th:object="${user}" th:method="post">
                 <h1>Opret en profil</h1>
                 <section th:if="${#fields.hasErrors('global')}">
-                    <h3 class="error-message">Hovsa, noget gik galt</h3>
+                    <h2>Hovsa, noget gik galt</h2>
                     <p th:each="error : ${#fields.errors('global')}" th:text="${error}"></p>
                 </section>
                 <div class="input-wrap">

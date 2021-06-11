@@ -10,7 +10,7 @@
                   th:object="${wish}" th:method="post">
                 <h1>Tilføj et nyt <em>ønske</em></h1>
                 <section th:if="${#fields.hasErrors('global')}">
-                    <h3 class="error-message">Hovsa, noget gik galt</h3>
+                    <h2>Hovsa, noget gik galt</h2>
                     <p th:each="error : ${#fields.errors('global')}" th:text="${error}"></p>
                 </section>
                 <p>Hold helst beskrivelsen kort. Et par ord højst, og prøv at undgå at danne hele sætninger.</p>

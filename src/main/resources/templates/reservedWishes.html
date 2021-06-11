@@ -11,7 +11,7 @@
                 <!--/* @thymesVar id="reservedWishes" type="java.util.List<com.davidfrp.wishlisting.model.Wish>" */-->
                 <li th:each="reservedWish : ${reservedWishes}">
                     <a th:href="@{/wishlist/{wishlistId}(wishlistId=${reservedWish.wishlist.id})}"
-                       th:text="${reservedWish.wishlist.name}"></a>
+                       th:text="|${reservedWish.wishlist.author.displayName} ønsker sig ${reservedWish.description}|"></a>
                 </li>
             </ul>
         </main>
