@@ -1,40 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head th:insert="fragments/layout.html :: head(title = 'Wishlisting – Wishlist')"></head>
-    <body>
+    <body th:with="isLoggedIn = ${session.user_id != null}">
         <nav th:insert="fragments/layout.html :: navigation"></nav>
-        <main>
-            <!--/*@thymesVar id="wishlist" type="com.davidfrp.wishlisting.model.Wishlist"*/-->
+        <main th:with="isAuthor = ${wishlist.author.id == session.user_id} and ${isLoggedIn}">
+            <!--/* @thymesVar id="wishlist" type="com.davidfrp.wishlisting.model.Wishlist" */-->
             <header>
                 <h1 th:text="${wishlist.name}"></h1>
                 <span th:if="${wishlist.isPrivate}" class="tag" title="Det er kun dig som kan se denne ønskeliste">Privat</span>
             </header>
             <p rel="author" th:text="${wishlist.author.displayName}"></p>
+
             <p th:text="${wishlist.description}"></p>
             <p th:if="${#lists.isEmpty(wishlist.wishes)}">Der er ingen ønsker på listen.</p>
+
             <ul class="wishes">
-                <li th:each="wish : ${wishlist.wishes}">
+                <li th:each="wish : ${wishlist.wishes}" th:with="isAppointee = ${wish.appointee?.id == session.user_id} and ${isLoggedIn}">
                     <p th:text="${wish.description}" th:title="${wish.description}"></p>
 
-                    <span th:if="${session.user_id != null}" th:remove="tag">
+                    <!--/* Show appointee */-->
+                    <p th:if="${wish.appointee != null}" th:text="|Reserveret af ${wish.appointee.displayName}|"></p>
 
-                        <a th:href="@{/wishlist/{wishlistId}/{wishId}/delete(wishlistId=${wishlist.id}, wishId=${wish.id})}"
-                           th:if="${session.user_id == wishlist.author.id}">Fjern</a>
+                    <!--/* Reserve */-->
+                    <a th:href="@{/wishlist/{wishlistId}/{wishId}/reserve(wishlistId=${wishlist.id}, wishId=${wish.id})}"
+                       th:if="${isLoggedIn} and ${wish.appointee == null} and not ${isAuthor}">Reservér</a>
 
-                        <span th:if="${session.user_id != wishlist.author.id}" th:remove="tag">
+                    <!--/* Unreserve */-->
+                    <a th:href="@{/wishlist/{wishlistId}/{wishId}/unreserve(wishlistId=${wishlist.id}, wishId=${wish.id})}"
+                       th:if="${isAppointee}">Fortryd</a>
 
-                            <a th:href="@{/wishlist/{wishlistId}/{wishId}/reserve(wishlistId=${wishlist.id}, wishId=${wish.id})}"
-                               th:if="${wish.appointee == null}">Reservér</a>
-
-                            <p th:if="${wish.appointee != null}" th:text="|Reserveret af ${wish.appointee.displayName}|"></p>
-
-                            <a th:href="@{/wishlist/{wishlistId}/{wishId}/unreserve(wishlistId=${wishlist.id}, wishId=${wish.id})}"
-                               th:if="${wish.appointee?.id == session.user_id}">Fortryd</a>
-                        </span>
-                    </span>
+                    <!--/* Delete */-->
+                    <a th:href="@{/wishlist/{wishlistId}/{wishId}/delete(wishlistId=${wishlist.id}, wishId=${wish.id})}"
+                       th:if="${isAuthor}">Fjern</a>
                 </li>
             </ul>
-            <p th:if="${session.user_id == wishlist.author.id}">
+
+            <p th:if="${isAuthor}">
                 <a th:href="@{/wishlist/{wishlistId}/add(wishlistId=${wishlist.id})}">Tilføj et nyt ønske</a>
             </p>
         </main>

@@ -13,7 +13,7 @@
   --color-accent-hover: #cb337f;
   --border-radius: 0.25em;
   --border-width: 1px;
-  --outline: 2px solid #0060DF;
+  --outline: revert;
 }
 
 .separator {
@@ -119,6 +119,17 @@ form {
   margin: auto;
 }
 
+a {
+  color: var(--color-accent);
+  transition: color 200ms ease;
+  text-decoration: none;
+  outline: revert;
+}
+a:hover, a:focus {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+}
+
 button, a.button {
   transition: background-color 200ms ease;
   border-radius: var(--border-radius);
@@ -131,31 +142,16 @@ button, a.button {
   font-weight: 500;
   user-select: none;
   cursor: pointer;
+  outline: revert;
 }
 button:hover, a.button:hover {
   background-color: var(--color-accent-hover);
   color: var(--color-bg);
   text-decoration: none;
 }
-button:focus, a.button:focus {
-  outline: var(--outline);
-}
 button.large, a.button.large {
   padding: 1.5rem;
   width: 100%;
-}
-
-a {
-  color: var(--color-accent);
-  transition: color 200ms ease;
-  text-decoration: none;
-}
-a:hover, a:focus {
-  color: var(--color-accent-hover);
-  text-decoration: underline;
-}
-a:focus {
-  outline: var(--outline);
 }
 
 .input-wrap {

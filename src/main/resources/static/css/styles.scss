@@ -19,7 +19,7 @@
 
     --border-radius: 0.25em;
     --border-width: 1px;
-    --outline: 2px solid #0060DF;
+    --outline: revert;
 }
 
 .separator {
@@ -132,6 +132,18 @@ form {
     margin: auto;
 }
 
+a {
+    color: var(--color-accent);
+    transition: color 200ms ease;
+    text-decoration: none;
+    outline: revert;
+
+    &:hover, &:focus {
+        color: var(--color-accent-hover);
+        text-decoration: underline;
+    }
+}
+
 button, a.button {
     transition: background-color 200ms ease;
     border-radius: var(--border-radius);
@@ -144,6 +156,7 @@ button, a.button {
     font-weight: 500;
     user-select: none;
     cursor: pointer;
+    outline: revert;
 
     &:hover {
         background-color: var(--color-accent-hover);
@@ -151,28 +164,9 @@ button, a.button {
         text-decoration: none;
     }
 
-    &:focus {
-        outline: var(--outline);
-    }
-
     &.large {
         padding: 1.5rem;
         width: 100%;
-    }
-}
-
-a {
-    color: var(--color-accent);
-    transition: color 200ms ease;
-    text-decoration: none;
-
-    &:hover, &:focus {
-        color: var(--color-accent-hover);
-        text-decoration: underline;
-    }
-
-    &:focus {
-        outline: var(--outline);
     }
 }
 
