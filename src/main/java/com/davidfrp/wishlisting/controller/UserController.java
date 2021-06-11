@@ -55,7 +55,7 @@ public class UserController {
             return "login";
 
         if (!userService.doesUsernameAndPasswordMatch(user.getUsername(), user.getPassword())) {
-            ObjectError error = new ObjectError("globalError", "Please check to make sure you used the right username and password.");
+            ObjectError error = new ObjectError("globalError", "Kontroller, at du har brugt det rigtige brugernavn med den rette adgangskode.");
             result.addError(error);
             return "login";
         }
@@ -84,14 +84,14 @@ public class UserController {
             return "signup";
 
         if (!userService.isUsernameAvailable(user.getUsername())) {
-            result.rejectValue("username", "error.user", "A profile with this username already exists.");
+            result.rejectValue("username", "error.user", "Der findes allerede en profil med dette brugernavn.");
             return "signup";
         }
 
         User newlyRegistredUser = userService.registerUser(user);
 
         if (newlyRegistredUser == null) {
-            ObjectError error = new ObjectError("globalError", "Something internally prevented your profile from being created. Try again later.");
+            ObjectError error = new ObjectError("globalError", "En intern fejl forhindrede din profil i at blive oprettet. Prøv igen senere.");
             result.addError(error);
             return "signup";
         }

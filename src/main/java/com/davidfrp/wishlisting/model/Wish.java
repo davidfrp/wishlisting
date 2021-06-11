@@ -24,9 +24,9 @@ public class Wish {
     @JoinColumn(name = "appointee_id")
     private User appointee;
 
-    @Size(min = 2, message = "Wish description must be at least {min} characters long.")
-    @Size(max = 128, message = "Wish description cannot be longer than {max} characters long.")
-    @Column(name = "description", length = 128, nullable = false)
+    @Size(min = 2, message = "Beskrivelsen skal være på mindst {min} tegn.")
+    @Size(max = 32, message = "Beskrivelsen må ikke være længere end {max} tegn.")
+    @Column(name = "description", length = 32, nullable = false)
     private String description;
 
     protected Wish() { }
@@ -51,5 +51,17 @@ public class Wish {
 
     public String getDescription() {
         return description;
+    }
+
+    public void setWishlist(Wishlist wishlist) {
+        this.wishlist = wishlist;
+    }
+
+    public void setAppointee(User appointee) {
+        this.appointee = appointee;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

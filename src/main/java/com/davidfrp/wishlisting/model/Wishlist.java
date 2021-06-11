@@ -21,12 +21,12 @@ public class Wishlist {
     @JoinColumn(name = "author_id", nullable = false)
     private User author;
 
-    @Size(min = 2, message = "Wishlist name must be at least {min} characters long.")
-    @Size(max = 32, message = "Wishlist name cannot be longer than {max} characters long.")
+    @Size(min = 2, message = "Navnet på ønskelisten skal være på mindst {min} tegn.")
+    @Size(max = 32, message = "Navnet på ønskelisten må ikke være længere end {max} tegn.")
     @Column(name = "name", length = 32, nullable = false)
     private String name;
 
-    @Size(max = 128, message = "The description cannot be longer than {max} characters long.")
+    @Size(max = 128, message = "Beskrivelsen må ikke være længere end {max} tegn.")
     @Column(name = "description", length = 128, nullable = false)
     private String description;
 
@@ -67,5 +67,25 @@ public class Wishlist {
 
     public List<Wish> getWishes() {
         return wishes;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPrivate(boolean aPrivate) {
+        isPrivate = aPrivate;
+    }
+
+    public void setWishes(List<Wish> wishes) {
+        this.wishes = wishes;
     }
 }

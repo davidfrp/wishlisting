@@ -5,16 +5,16 @@
         <nav th:insert="fragments/layout.html :: navigation"></nav>
         <main>
             <!--/*@thymesVar id="wishlists" type="java.util.List<com.davidfrp.wishlisting.model.Wishlist>"*/-->
-            <h1 th:text="|Hi ${session.user_display_name}|"></h1>
-            <h2>Wishlists</h2>
-            <p th:if="${#lists.isEmpty(wishlists)}">There aren't any wishlists yet.</p>
-            <a th:href="@{/wishlists/add}">Add a new wishlist</a>
+            <h1 th:text="|Hejsa! ${session.user_display_name}|"></h1>
+            <h2>Ønskelister</h2>
+            <p th:if="${#lists.isEmpty(wishlists)}">Du har ingen ønskelister.</p>
             <ul>
                 <!--/*@thymesVar id="wishlist" type="com.davidfrp.wishlisting.model.Wishlist"*/-->
                 <li th:each="wishlist : ${wishlists}">
                     <a th:href="@{/wishlists/{wishlistId}(wishlistId=${wishlist.id})}" th:text="${wishlist.name}"></a>
                 </li>
             </ul>
+            <a th:href="@{/wishlists/add}">Opret en ny ønskeliste</a>
         </main>
     </body>
 </html>

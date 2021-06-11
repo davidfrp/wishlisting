@@ -7,27 +7,27 @@
             <!--/*@thymesVar id="redirectUrl" type="java.lang.String"*/-->
             <!--/*@thymesVar id="user" type="com.davidfrp.wishlisting.model.User"*/-->
             <form action="#" th:action="@{/profile/login(redirectTo=${redirectUrl})}" th:object="${user}" th:method="post">
-                <h1>Log in to see your <em>wishes</em></h1>
+                <h1>Log ind for at se dine <em>ønsker</em></h1>
                 <section th:if="${#fields.hasErrors('global')}" class="alert error">
-                    <h3>Oops, something went wrong</h3>
+                    <h3>Hovsa, noget gik galt</h3>
                     <p th:each="error : ${#fields.errors('global')}" th:text="${error}"></p>
                 </section>
                 <div class="input-wrap">
                     <input type="text" id="username" th:field="*{username}" autocomplete="username" placeholder=" "
                            maxlength="32" autocapitalize="none" spellcheck="false"
                            th:autofocus="${!#fields.hasErrors('*') || #fields.hasErrors('username')}">
-                    <label for="username">Username</label>
+                    <label for="username">Brugernavn</label>
                     <label for="username" th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error"></label>
                 </div>
                 <div class="input-wrap">
                     <input type="password" id="password" th:field="*{password}" autocomplete="new-password" placeholder=" "
                            maxlength="128" autocapitalize="none" spellcheck="false"
                            th:autofocus="${#fields.hasErrors('password')}">
-                    <label for="password">Password</label>
+                    <label for="password">Adgangskode</label>
                     <label for="password" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></label>
                 </div>
-                <button type="submit" class="large">Log in</button>
-                <p>Don't have an account yet? <a th:href="@{/profile/signup}">Sign up</a></p>
+                <button type="submit" class="large">Log ind</button>
+                <p>Har du ikke en profil endnu? <a th:href="@{/profile/signup}">Opret profil</a></p>
             </form>
         </main>
     </body>
