@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="fragments/layout.html :: head(title = 'Wishlisting – Reserved wishes')"></head>
+    <body>
+        <nav th:insert="fragments/layout.html :: navigation"></nav>
+        <main>
+            <!--/* @thymesVar id="wishlists" type="java.util.List<com.davidfrp.wishlisting.model.Wishlist>" */-->
+            <h1>Reserverede ønsker</h1>
+            <p>Her vises andres ønskelister, hvorfra du har reserverede ønsker.</p>
+            <ul>
+                <!--/* @thymesVar id="reservedWishes" type="java.util.List<com.davidfrp.wishlisting.model.Wish>" */-->
+                <li th:each="reservedWish : ${reservedWishes}">
+                    <a th:href="@{/wishlist/{wishlistId}(wishlistId=${reservedWish.wishlist.id})}"
+                       th:text="${reservedWish.wishlist.name}"></a>
+                </li>
+            </ul>
+        </main>
+    </body>
+</html>

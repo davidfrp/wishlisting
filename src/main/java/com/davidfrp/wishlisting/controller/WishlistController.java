@@ -35,7 +35,6 @@ public class WishlistController {
             return "redirect:/profile/login";
 
         model.addAttribute("wishlists", user.getWishlists());
-        model.addAttribute("reservedWishes", user.getReservedWishes());
         return "myWishlists";
     }
 

@@ -33,6 +33,18 @@ public class WishController {
         this.userService = userService;
     }
 
+    @GetMapping("/profile/reserved-wishes")
+    public String getWishlistsPage(Model model, HttpSession session ) {
+
+        User user = userService.getUserFromSession(session);
+
+        if (user == null)
+            return "redirect:/profile/login";
+
+        model.addAttribute("reservedWishes", user.getReservedWishes());
+        return "reservedWishes";
+    }
+
     @GetMapping("/wishlist/{id}/add")
     public String createWish(@PathVariable("id") long wishlistId, Model model, HttpSession session) {
 

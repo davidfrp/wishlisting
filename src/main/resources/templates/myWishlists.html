@@ -5,16 +5,7 @@
         <nav th:insert="fragments/layout.html :: navigation"></nav>
         <main>
             <!--/* @thymesVar id="wishlists" type="java.util.List<com.davidfrp.wishlisting.model.Wishlist>" */-->
-            <h1 th:text="|Hejsa, ${session.user_display_name}|"></h1>
-            <h2>Reserverede ønsker</h2>
-            <p>Her vises andres ønskelister, hvorfra du har reserverede ønsker.</p>
-            <ul>
-                <!--/* @thymesVar id="reservedWishes" type="java.util.List<com.davidfrp.wishlisting.model.Wish>" */-->
-                <li th:each="reservedWish : ${reservedWishes}">
-                    <a th:href="@{/wishlist/{wishlistId}(wishlistId=${reservedWish.wishlist.id})}" th:text="${reservedWish.wishlist.name}"></a>
-                </li>
-            </ul>
-            <h2>Mine ønskelister</h2>
+            <h1>Mine ønskelister</h1>
             <p>Ønkselister som du selv har oprettet.</p>
             <p th:if="${#lists.isEmpty(wishlists)}">Du har ingen ønskelister.</p>
             <ul>
