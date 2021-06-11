@@ -33,7 +33,7 @@ public class WishController {
         this.userService = userService;
     }
 
-    @GetMapping("/wishlists/{id}/add")
+    @GetMapping("/profile/my-wishlists/{id}/add")
     public String createWish(@PathVariable("id") long wishlistId, Model model, HttpSession session) {
 
         Wishlist wishlist = wishlistService.getWishlistById(wishlistId);
@@ -41,27 +41,35 @@ public class WishController {
         if (wishlist == null)
             return "error/404";
 
-        if (userService.getUserFromSession(session) == null)
-            return "redirect:/profile/login?redirectTo=/wishlists/" + wishlistId;
+        User author = userService.getUserFromSession(session);
+
+        if (author == null)
+            return "redirect:/profile/login?redirectTo=/wishlist/" + wishlistId;
+
+        if (author.getId() != wishlist.getAuthor().getId())
+            return "error/403";
 
         model.addAttribute("wish", new Wish(null, null, null));
         model.addAttribute("wishlist", wishlist);
         return "createWish";
     }
 
-    @PostMapping("/wishlists/{id}/add")
+    @PostMapping("/wishlist/{id}/add")
     public String createWish(@PathVariable("id") long wishlistId, @Valid @ModelAttribute("wish") Wish wish,
                              BindingResult result, HttpSession session) {
 
         User author = userService.getUserFromSession(session);
 
         if (author == null)
-            return "redirect:/profile/login?redirectTo=/wishlists/" + wishlistId;
+            return "redirect:/profile/login?redirectTo=/wishlist/" + wishlistId;
 
         Wishlist wishlist = wishlistService.getWishlistById(wishlistId);
 
         if (wishlist == null)
             return "error/404";
+
+        if (author.getId() != wishlist.getAuthor().getId())
+            return "error/403";
 
         if (result.hasErrors())
             return "createWish";
@@ -74,10 +82,10 @@ public class WishController {
             return "createWish";
         }
 
-        return "redirect:/wishlists/" + wishlistId;
+        return "redirect:/wishlist/" + wishlistId;
     }
 
-    @GetMapping("/wishlists/{wishlistId}/{wishId}/reserve")
+    @GetMapping("/wishlist/{wishlistId}/{wishId}/reserve")
     public String reserveWish(@PathVariable("wishlistId") long wishlistId,
                               @PathVariable("wishId") long wishId,
                               HttpSession session) {
@@ -85,7 +93,7 @@ public class WishController {
         User appointee = userService.getUserFromSession(session);
 
         if (appointee == null)
-            return "redirect:/profile/login?redirectTo=/wishlists/" + wishlistId;
+            return "redirect:/profile/login?redirectTo=/wishlist/" + wishlistId;
 
         Wishlist wishlist = wishlistService.getWishlistById(wishlistId);
 
@@ -102,10 +110,10 @@ public class WishController {
 
         wishService.reserveWish(wish, appointee);
 
-        return "redirect:/wishlists/" + wishlistId;
+        return "redirect:/wishlist/" + wishlistId;
     }
 
-    @GetMapping("/wishlists/{wishlistId}/{wishId}/unreserve")
+    @GetMapping("/wishlist/{wishlistId}/{wishId}/unreserve")
     public String unreserveWish(@PathVariable("wishlistId") long wishlistId,
                                 @PathVariable("wishId") long wishId,
                                 HttpSession session) {
@@ -113,7 +121,7 @@ public class WishController {
         User appointee = userService.getUserFromSession(session);
 
         if (appointee == null)
-            return "redirect:/profile/login?redirectTo=/wishlists/" + wishlistId;
+            return "redirect:/profile/login?redirectTo=/wishlist/" + wishlistId;
 
         Wishlist wishlist = wishlistService.getWishlistById(wishlistId);
 
@@ -131,10 +139,10 @@ public class WishController {
         if (wish.getAppointee() != null && wish.getAppointee().getId() == appointee.getId())
             wishService.unreserveWish(wish, appointee);
 
-        return "redirect:/wishlists/" + wishlistId;
+        return "redirect:/wishlist/" + wishlistId;
     }
 
-    @GetMapping("/wishlists/{wishlistId}/{wishId}/delete")
+    @GetMapping("/wishlist/{wishlistId}/{wishId}/delete")
     public String deleteWish(@PathVariable("wishlistId") long wishlistId,
                                 @PathVariable("wishId") long wishId,
                                 HttpSession session) {
@@ -142,7 +150,7 @@ public class WishController {
         User author = userService.getUserFromSession(session);
 
         if (author == null)
-            return "redirect:/profile/login?redirectTo=/wishlists/" + wishlistId;
+            return "redirect:/profile/login?redirectTo=/wishlist/" + wishlistId;
 
         Wishlist wishlist = wishlistService.getWishlistById(wishlistId);
 
@@ -157,6 +165,6 @@ public class WishController {
         if (author.getId() == wishlist.getAuthor().getId())
             wishService.deleteWish(wish);
 
-        return "redirect:/wishlists/" + wishlistId;
+        return "redirect:/wishlist/" + wishlistId;
     }
 }

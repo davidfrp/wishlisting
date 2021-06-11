@@ -18,24 +18,24 @@
 
                     <span th:if="${session.user_id != null}" th:remove="tag">
 
-                        <a th:href="@{/wishlists/{wishlistId}/{wishId}/delete(wishlistId=${wishlist.id}, wishId=${wish.id})}"
+                        <a th:href="@{/wishlist/{wishlistId}/{wishId}/delete(wishlistId=${wishlist.id}, wishId=${wish.id})}"
                            th:if="${session.user_id == wishlist.author.id}">Fjern</a>
 
                         <span th:if="${session.user_id != wishlist.author.id}" th:remove="tag">
 
-                            <a th:href="@{/wishlists/{wishlistId}/{wishId}/reserve(wishlistId=${wishlist.id}, wishId=${wish.id})}"
+                            <a th:href="@{/wishlist/{wishlistId}/{wishId}/reserve(wishlistId=${wishlist.id}, wishId=${wish.id})}"
                                th:if="${wish.appointee == null}">Reservér</a>
 
                             <p th:if="${wish.appointee != null}" th:text="|Reserveret af ${wish.appointee.displayName}|"></p>
 
-                            <a th:href="@{/wishlists/{wishlistId}/{wishId}/unreserve(wishlistId=${wishlist.id}, wishId=${wish.id})}"
+                            <a th:href="@{/wishlist/{wishlistId}/{wishId}/unreserve(wishlistId=${wishlist.id}, wishId=${wish.id})}"
                                th:if="${wish.appointee?.id == session.user_id}">Fortryd</a>
                         </span>
                     </span>
                 </li>
             </ul>
             <p th:if="${session.user_id == wishlist.author.id}">
-                <a th:href="@{/wishlists/{wishlistId}/add(wishlistId=${wishlist.id})}">Tilføj et nyt ønske</a>
+                <a th:href="@{/wishlist/{wishlistId}/add(wishlistId=${wishlist.id})}">Tilføj et nyt ønske</a>
             </p>
         </main>
     </body>

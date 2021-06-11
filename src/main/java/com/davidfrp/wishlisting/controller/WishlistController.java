@@ -26,7 +26,7 @@ public class WishlistController {
         this.userService = userService;
     }
 
-    @GetMapping("/wishlists")
+    @GetMapping("/profile/my-wishlists")
     public String getWishlistsPage(Model model, HttpSession session ) {
 
         User user = userService.getUserFromSession(session);
@@ -35,10 +35,11 @@ public class WishlistController {
             return "redirect:/profile/login";
 
         model.addAttribute("wishlists", user.getWishlists());
+        model.addAttribute("reservedWishes", user.getReservedWishes());
         return "wishlists";
     }
 
-    @GetMapping("/wishlists/add")
+    @GetMapping("/profile/my-wishlists/add")
     public String createWishlist(Model model, HttpSession session) {
 
         if (userService.getUserFromSession(session) == null)
@@ -48,7 +49,7 @@ public class WishlistController {
         return "createWishlist";
     }
 
-    @PostMapping("/wishlists/add")
+    @PostMapping("/profile/my-wishlists/add")
     public String createWishlist(@Valid @ModelAttribute("wishlist") Wishlist wishlist, BindingResult result, HttpSession session) {
 
         User author = userService.getUserFromSession(session);
@@ -72,10 +73,10 @@ public class WishlistController {
             return "createWishlist";
         }
 
-        return "redirect:/wishlists";
+        return "redirect:/profile/my-wishlists";
     }
 
-    @GetMapping("/wishlists/{id}")
+    @GetMapping("/wishlist/{id}")
     public String getWishlistsPage(@PathVariable("id") long wishlistId, Model model, HttpSession session) {
 
         Wishlist wishlist = wishlistService.getWishlistById(wishlistId);
@@ -88,7 +89,7 @@ public class WishlistController {
         if (wishlist.getIsPrivate()) {
 
             if (loggedInUser == null)
-                return "redirect:/profile/login?redirectTo=/wishlists/" + wishlist.getId();
+                return "redirect:/profile/login?redirectTo=/wishlist/" + wishlist.getId();
 
             if (loggedInUser.getId() != wishlist.getAuthor().getId())
                 return "error/403";
@@ -98,12 +99,12 @@ public class WishlistController {
         return "wishlist";
     }
 
-    @PutMapping("/wishlists/{id}")
+    @PutMapping("/wishlist/{id}")
     public String editWishlist(@PathVariable("id") long wishlistId, HttpSession session) {
         return "";
     }
 
-    @DeleteMapping("/wishlists/{id}")
+    @DeleteMapping("/wishlist/{id}")
     public String deleteWishlist(@PathVariable("id") long wishlistId, HttpSession session) {
         return "";
     }

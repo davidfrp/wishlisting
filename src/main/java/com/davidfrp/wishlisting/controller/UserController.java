@@ -66,7 +66,7 @@ public class UserController {
         session.setAttribute("user_display_name", loggedInUser.getDisplayName());
 
         if (redirectUrl.isBlank())
-            return "redirect:/wishlists";
+            return "redirect:/profile/my-wishlists";
 
         return "redirect:" + redirectUrl;
     }
@@ -98,6 +98,6 @@ public class UserController {
 
         session.setAttribute("user_id", newlyRegistredUser.getId());
         session.setAttribute("user_display_name", newlyRegistredUser.getDisplayName());
-        return "redirect:/wishlists";
+        return "redirect:/profile/my-wishlists";
     }
 }

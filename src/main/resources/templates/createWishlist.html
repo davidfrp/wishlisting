@@ -5,7 +5,7 @@
         <nav th:insert="fragments/layout.html :: navigation"></nav>
         <main>
             <!--/*@thymesVar id="wishlist" type="com.davidfrp.wishlisting.model.Wishlist"*/-->
-            <form action="#" th:action="@{/wishlists/add}" th:object="${wishlist}" th:method="post">
+            <form action="#" th:action="@{/profile/my-wishlists/add}" th:object="${wishlist}" th:method="post">
                 <h1>Opret en <em>ønskeliste</em></h1>
                 <section th:if="${#fields.hasErrors('global')}">
                     <h3 class="error-message">Hovsa, noget gik galt</h3>
@@ -29,7 +29,7 @@
                 <input type="checkbox" id="isPrivate" th:field="*{isPrivate}">
                 <label for="isPrivate">Kun jeg, må kunne se denne liste</label>
                 <button type="submit" class="large">Opret ønskeliste</button>
-                <p><a th:href="@{/wishlists}">Annullér</a></p>
+                <p><a th:href="@{/profile/my-wishlists}">Annullér</a></p>
             </form>
         </main>
     </body>

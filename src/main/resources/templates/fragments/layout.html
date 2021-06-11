@@ -7,25 +7,25 @@
         <link rel="stylesheet" type="text/css" th:href="@{/../css/styles.css}">
     </head>
     <body>
-        <nav th:fragment="navigation" th:remove="tag">
+        <nav th:fragment="navigation" th:remove="tag" th:with="loggedIn = ${session.user_id != null}, currentPage = ${#httpServletRequest.getRequestURI()}">
             <ul>
-                <span th:if="${session.user_id != null}" th:remove="tag">
-                    <li>
-                        <a th:classappend="${#httpServletRequest.getRequestURI() == '/wishlists' ? 'active' : ''}"
-                           th:href="@{/wishlists}">Mine ønskelister</a>
-                    </li>
-                    <li>
-                        <p th:text="${session.user_display_name}"></p>
-                        <a th:href="@{/profile/logout}">Log ud</a>
-                    </li>
-                </span>
-                <li th:if="${session.user_id == null}">
-                    <a th:classappend="${#httpServletRequest.getRequestURI() == '/profile/login' ? 'active' : ''}"
-                       th:href="@{/profile/login(redirectTo=${#httpServletRequest.getRequestURI() == '/profile/signup' ? '' : #httpServletRequest.getRequestURI()})}">Log ind</a>
-                    <span th:if="${#httpServletRequest.getRequestURI() != '/profile/login' &&
-                                   #httpServletRequest.getRequestURI() != '/profile/signup'}" th:remove="tag">/</span>
-                    <a th:classappend="${#httpServletRequest.getRequestURI() == '/profile/signup' ? 'active' : ''}"
-                       th:href="@{/profile/signup}">Opret profil</a>
+                <!--/* Logged in */-->
+                <li th:if="${loggedIn}">
+                    <a th:href="@{/profile/my-wishlists}">Mine ønskelister</a>
+                </li>
+                <li th:if="${loggedIn}">
+                    <a th:href="@{/profile/reserved-wishes}">Reserverede ønsker</a>
+                </li>
+                <li th:if="${loggedIn}">
+                    <p th:text="${session.user_display_name}"></p>
+                    <a th:href="@{/profile/logout}">Log ud</a>
+                </li>
+
+                <!--/* Not logged in */-->
+                <li th:if="not ${loggedIn}">
+                    <a th:href="@{/profile/login(redirectTo=${currentPage})}">Log ind</a><!--
+                    --><span class="separator"></span><!--
+                    --><a th:href="@{/profile/signup}">Opret profil</a>
                 </li>
             </ul>
         </nav>

@@ -19,6 +19,16 @@
 
     --border-radius: 0.25em;
     --border-width: 1px;
+    --outline: 2px solid #0060DF;
+}
+
+.separator {
+    user-select: none;
+    margin: 0 0.25rem;
+
+    &::after {
+        content: '/';
+    }
 }
 
 * {
@@ -123,19 +133,26 @@ form {
 }
 
 button, a.button {
+    transition: background-color 200ms ease;
     border-radius: var(--border-radius);
     background: var(--color-accent);
     color: var(--color-bg);
-    transition: background-color 200ms ease;
+    display: inline-block;
     margin: 1.5rem 0 0.5rem;
-    padding: 1rem 1.75rem;
+    padding: 0.75rem 1.25rem;
     border: none;
     font-weight: 500;
+    user-select: none;
     cursor: pointer;
-    outline: revert;
 
     &:hover {
         background-color: var(--color-accent-hover);
+        color: var(--color-bg);
+        text-decoration: none;
+    }
+
+    &:focus {
+        outline: var(--outline);
     }
 
     &.large {
@@ -148,11 +165,14 @@ a {
     color: var(--color-accent);
     transition: color 200ms ease;
     text-decoration: none;
-    outline: revert;
 
     &:hover, &:focus {
-        text-decoration: underline;
         color: var(--color-accent-hover);
+        text-decoration: underline;
+    }
+
+    &:focus {
+        outline: var(--outline);
     }
 }
 
@@ -250,7 +270,7 @@ nav {
                 }
 
                 &.active {
-                    display: none;
+                    //display: none;
                 }
             }
         }
