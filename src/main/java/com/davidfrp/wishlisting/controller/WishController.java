@@ -33,7 +33,7 @@ public class WishController {
         this.userService = userService;
     }
 
-    @GetMapping("/profile/my-wishlists/{id}/add")
+    @GetMapping("/wishlist/{id}/add")
     public String createWish(@PathVariable("id") long wishlistId, Model model, HttpSession session) {
 
         Wishlist wishlist = wishlistService.getWishlistById(wishlistId);
@@ -56,7 +56,7 @@ public class WishController {
 
     @PostMapping("/wishlist/{id}/add")
     public String createWish(@PathVariable("id") long wishlistId, @Valid @ModelAttribute("wish") Wish wish,
-                             BindingResult result, HttpSession session) {
+                             BindingResult result, HttpSession session, Model model) {
 
         User author = userService.getUserFromSession(session);
 
@@ -71,8 +71,10 @@ public class WishController {
         if (author.getId() != wishlist.getAuthor().getId())
             return "error/403";
 
-        if (result.hasErrors())
+        if (result.hasErrors()) {
+            model.addAttribute("wishlist", wishlist);
             return "createWish";
+        }
 
         Wish newlyCreatedWish = wishService.createWish(new Wish(wishlist, null, wish.getDescription()));
 
