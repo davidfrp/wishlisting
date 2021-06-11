@@ -340,6 +340,10 @@ ul.wishes {
             margin-top: 0;
 
             &:first-child {
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                white-space: initial;
                 text-overflow: ellipsis;
                 overflow: hidden;
             }

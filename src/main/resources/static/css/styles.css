@@ -308,6 +308,10 @@ ul.wishes li * {
   margin-top: 0;
 }
 ul.wishes li *:first-child {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  white-space: initial;
   text-overflow: ellipsis;
   overflow: hidden;
 }

@@ -6,7 +6,7 @@
         <main>
             <!--/* @thymesVar id="wish" type="com.davidfrp.wishlisting.model.Wish" */-->
             <!--/* @thymesVar id="wishlist" type="com.davidfrp.wishlisting.model.Wishlist" */-->
-            <form action="#" th:action="@{/wishlist/{wishlistId}/add(wishlistId=${wishlist.id})}"
+            <form th:action="@{/wishlist/{wishlistId}/add(wishlistId=${wishlist.id})}"
                   th:object="${wish}" th:method="post">
                 <h1>Tilføj et nyt <em>ønske</em></h1>
                 <section th:if="${#fields.hasErrors('global')}">
