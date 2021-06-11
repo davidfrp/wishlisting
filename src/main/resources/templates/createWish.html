@@ -4,8 +4,8 @@
     <body>
         <nav th:insert="fragments/layout.html :: navigation"></nav>
         <main>
-            <!--/*@thymesVar id="wish" type="com.davidfrp.wishlisting.model.Wish"*/-->
-            <!--/*@thymesVar id="wishlist" type="com.davidfrp.wishlisting.model.Wishlist"*/-->
+            <!--/* @thymesVar id="wish" type="com.davidfrp.wishlisting.model.Wish" */-->
+            <!--/* @thymesVar id="wishlist" type="com.davidfrp.wishlisting.model.Wishlist" */-->
             <form action="#" th:action="@{/wishlist/{wishlistId}/add(wishlistId=${wishlist.id})}"
                   th:object="${wish}" th:method="post">
                 <h1>Tilføj et nyt <em>ønske</em></h1>
@@ -16,7 +16,7 @@
                 <p>Hold helst beskrivelsen kort. Et par ord højst, og prøv at undgå at danne hele sætninger.</p>
                 <div class="input-wrap">
                     <input type="text" id="description" th:field="*{description}" autocomplete="off" placeholder=" "
-                           maxlength="32" autocapitalize="none" spellcheck="false"
+                           maxlength="64" autocapitalize="none" spellcheck="false"
                            th:autofocus="${#fields.hasErrors('description')}">
                     <label for="description">Beskrivelse</label>
                     <label for="description" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"

@@ -25,8 +25,8 @@ public class Wish {
     private User appointee;
 
     @Size(min = 2, message = "Beskrivelsen skal være på mindst {min} tegn.")
-    @Size(max = 32, message = "Beskrivelsen må ikke være længere end {max} tegn.")
-    @Column(name = "description", length = 32, nullable = false)
+    @Size(max = 64, message = "Beskrivelsen må ikke være længere end {max} tegn.")
+    @Column(name = "description", length = 64, nullable = false)
     private String description;
 
     protected Wish() { }
