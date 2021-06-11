@@ -98,13 +98,29 @@ public class WishlistController {
         return "wishlist";
     }
 
-    @PutMapping("/wishlist/{id}")
+    @GetMapping("/wishlist/{id}/edit")
     public String editWishlist(@PathVariable("id") long wishlistId, HttpSession session) {
         return "";
     }
 
-    @DeleteMapping("/wishlist/{id}")
-    public String deleteWishlist(@PathVariable("id") long wishlistId, HttpSession session) {
-        return "";
+    @GetMapping("/wishlist/{id}/delete")
+    public String deleteWishlist(@PathVariable("id") long wishlistId, HttpSession session, Model model) {
+
+        Wishlist wishlist = wishlistService.getWishlistById(wishlistId);
+
+        if (wishlist == null)
+            return "error/404";
+
+        User loggedInUser = userService.getUserFromSession(session);
+
+        if (loggedInUser == null)
+            return "redirect:/profile/login?redirectTo=/wishlist/" + wishlist.getId();
+
+        if (loggedInUser.getId() != wishlist.getAuthor().getId())
+            return "error/403";
+
+        wishlistService.deleteWishlist(wishlist);
+
+        return "redirect:/profile/my-wishlists";
     }
 }

@@ -12,6 +12,7 @@
                 <!--/* @thymesVar id="wishlist" type="com.davidfrp.wishlisting.model.Wishlist" */-->
                 <li th:each="wishlist : ${wishlists}">
                     <a th:href="@{/wishlist/{wishlistId}(wishlistId=${wishlist.id})}" th:text="${wishlist.name}"></a>
+                    <a th:href="@{/wishlist/{wishlistId}/delete(wishlistId=${wishlist.id})}"> Slet</a>
                 </li>
             </ul>
             <a th:href="@{/profile/my-wishlists/add}" class="button">Opret en ny ønskeliste</a>

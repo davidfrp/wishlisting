@@ -22,4 +22,8 @@ public class WishlistService {
     public Wishlist createWishlist(Wishlist wishlist) {
         return wishlistRepository.save(wishlist);
     }
+
+    public void deleteWishlist(Wishlist wishlist) {
+        wishlistRepository.delete(wishlist);
+    }
 }
