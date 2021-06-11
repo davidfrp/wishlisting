@@ -72,7 +72,7 @@ public class WishlistController {
             return "createWishlist";
         }
 
-        return "redirect:/wishlist/" + wishlist.getId();
+        return "redirect:/wishlist/" + newlyCreatedWishlist.getId();
     }
 
     @GetMapping("/wishlist/{id}")
