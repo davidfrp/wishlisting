@@ -36,7 +36,7 @@ public class WishlistController {
 
         model.addAttribute("wishlists", user.getWishlists());
         model.addAttribute("reservedWishes", user.getReservedWishes());
-        return "wishlists";
+        return "myWishlists";
     }
 
     @GetMapping("/profile/my-wishlists/add")
