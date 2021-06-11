@@ -4,7 +4,7 @@
     <body>
         <nav th:insert="fragments/layout.html :: navigation"></nav>
         <main>
-            <!--/*@thymesVar id="user" type="com.davidfrp.wishlisting.model.User"*/-->
+            <!--/* @thymesVar id="user" type="com.davidfrp.wishlisting.model.User" */-->
             <form action="#" th:action="@{/profile/signup}" th:object="${user}" th:method="post">
                 <h1>Opret en profil</h1>
                 <section th:if="${#fields.hasErrors('global')}">
