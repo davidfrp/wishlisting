@@ -13,15 +13,6 @@
   --color-accent-hover: #cb337f;
   --border-radius: 0.25em;
   --border-width: 1px;
-  --outline: revert;
-}
-
-.separator {
-  user-select: none;
-  margin: 0 0.25rem;
-}
-.separator::after {
-  content: "/";
 }
 
 * {
@@ -74,23 +65,35 @@ h1:last-child, h2:last-child, h3:last-child, h4:last-child, h5:last-child, h6:la
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
 }
 
 h3 {
-  font-size: 1.25rem;
+  font-size: 2rem;
 }
 
 h4 {
-  font-size: 1rem;
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
 }
 
 em {
   color: var(--color-accent);
+}
+
+.separator {
+  user-select: none;
+  margin: 0 0.25rem;
+}
+.separator::after {
+  content: "/";
 }
 
 .error {
@@ -123,11 +126,20 @@ a {
   color: var(--color-accent);
   transition: color 200ms ease;
   text-decoration: none;
-  outline: revert;
+  outline-offset: 0;
+  outline: solid 2px transparent;
+  transition: outline-offset 0.2s;
 }
-a:hover, a:focus {
+a:hover {
   color: var(--color-accent-hover);
   text-decoration: underline;
+}
+a:not(:focus) {
+  transition-duration: 0s;
+}
+a:focus:not(:hover):not(:active) {
+  outline-offset: 0.25rem;
+  outline-color: var(--color-accent);
 }
 
 button, a.button {
@@ -142,7 +154,9 @@ button, a.button {
   font-weight: 500;
   user-select: none;
   cursor: pointer;
-  outline: revert;
+  outline-offset: 0;
+  outline: solid 2px transparent;
+  transition: outline-offset 0.2s;
 }
 button:hover, a.button:hover {
   background-color: var(--color-accent-hover);
@@ -152,6 +166,13 @@ button:hover, a.button:hover {
 button.large, a.button.large {
   padding: 1.5rem;
   width: 100%;
+}
+button:not(:focus), a.button:not(:focus) {
+  transition-duration: 0s;
+}
+button:focus:not(:hover):not(:active), a.button:focus:not(:hover):not(:active) {
+  outline-offset: 0.25rem;
+  outline-color: var(--color-accent);
 }
 
 .input-wrap {
@@ -231,14 +252,19 @@ nav ul li * {
   display: inline-block;
 }
 nav ul li a {
-  color: var(--color-bg);
-  padding: 1.15rem;
   font-weight: 500;
+  color: var(--color-bg);
+  padding: 0.25rem 0;
+  margin: 0.8rem 1rem;
 }
 nav ul li a:hover, nav ul li a:focus {
   text-decoration: none;
   color: var(--color-bg);
 }
+nav ul li a.active {
+  border-bottom: 2px solid var(--color-accent);
+}
+
 .tag {
   background-color: var(--color-accent);
   color: var(--color-bg);
