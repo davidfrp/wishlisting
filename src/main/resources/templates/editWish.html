@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="fragments/layout.html :: head(title = 'Wishlisting – Add wish')"></head>
+    <body>
+        <nav th:insert="fragments/layout.html :: navigation"></nav>
+        <main>
+            <!--/* @thymesVar id="wish" type="com.davidfrp.wishlisting.model.Wish" */-->
+            <!--/* @thymesVar id="wishlist" type="com.davidfrp.wishlisting.model.Wishlist" */-->
+            <form th:action="@{/wishlist/{wishlistId}/{wishId}/edit(wishlistId=${wishlist.id}, wishId=${wish.id})}"
+                  th:object="${wish}" th:method="post">
+                <h1>Ændre dit <em>ønske</em></h1>
+                <section th:if="${#fields.hasErrors('global')}">
+                    <h2>Hovsa, noget gik galt</h2>
+                    <p th:each="error : ${#fields.errors('global')}" th:text="${error}"></p>
+                </section>
+                <p>Hold helst beskrivelsen kort. Et par ord højst, og prøv at undgå at danne hele sætninger.</p>
+                <div class="input-wrap">
+                    <input type="text" id="description" th:field="*{description}" autocomplete="off" placeholder=" "
+                           maxlength="64" autocapitalize="none" spellcheck="false" autofocus>
+                    <label for="description">Beskrivelse</label>
+                    <label for="description" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+                           class="error"></label>
+                </div>
+                <button type="submit" class="large">Gem ændringer</button>
+                <p><a th:href="@{/wishlist/{wishlistId}(wishlistId=${wishlist.id})}">Annullér</a></p>
+            </form>
+        </main>
+    </body>
+</html>

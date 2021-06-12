@@ -88,12 +88,85 @@ public class WishController {
             return "createWish";
         }
 
-        Wish newlyCreatedWish = wishService.createWish(new Wish(wishlist, null, wish.getDescription()));
+        Wish newlyCreatedWish = wishService.saveWish(new Wish(wishlist, null, wish.getDescription()));
 
         if (newlyCreatedWish == null) {
             ObjectError error = new ObjectError("globalError", "Something internally prevented your wish from being added. Try again later.");
             result.addError(error);
             return "createWish";
+        }
+
+        return "redirect:/wishlist/" + wishlistId;
+    }
+
+    @GetMapping("/wishlist/{wishlistId}/{wishId}/edit")
+    public String editWish(@PathVariable("wishlistId") long wishlistId,
+                           @PathVariable("wishId") long wishId,
+                           Model model, HttpSession session) {
+
+        Wishlist wishlist = wishlistService.getWishlistById(wishlistId);
+
+        if (wishlist == null)
+            return "error/404";
+
+        User author = userService.getUserFromSession(session);
+
+        if (author == null)
+            return "redirect:/profile/login?redirectTo=/wishlist/" + wishlistId;
+
+        Wish wish = wishService.getWishById(wishId);
+
+        if (wish == null)
+            return "error/404";
+
+        if (author.getId() != wishlist.getAuthor().getId())
+            return "error/403";
+
+        model.addAttribute("wish", wish);
+        model.addAttribute("wishlist", wishlist);
+        return "editWish";
+    }
+
+    @PostMapping("/wishlist/{wishlistId}/{wishId}/edit")
+    public String editWish(@PathVariable("wishlistId") long wishlistId,
+                           @PathVariable("wishId") long wishId, 
+                           @Valid @ModelAttribute("wish") Wish editedWish,
+                           BindingResult result, HttpSession session, Model model) {
+
+        User author = userService.getUserFromSession(session);
+
+        if (author == null)
+            return "redirect:/profile/login?redirectTo=/wishlist/" + wishlistId;
+
+        Wishlist wishlist = wishlistService.getWishlistById(wishlistId);
+
+        if (wishlist == null)
+            return "error/404";
+
+        if (author.getId() != wishlist.getAuthor().getId())
+            return "error/403";
+
+        if (result.hasErrors()) {
+            model.addAttribute("wish", editedWish);
+            model.addAttribute("wishlist", wishlist);
+            return "editWish";
+        }
+
+        Wish wish = wishService.getWishById(wishId);
+
+        if (wish == null)
+            return "error/404";
+
+        wish.setAppointee(wish.getAppointee());
+        wish.setWishlist(wishlist);
+        wish.setDescription(editedWish.getDescription());
+
+        Wish newlyEditedWish = wishService.saveWish(wish);
+
+        if (newlyEditedWish == null) {
+            ObjectError error = new ObjectError("globalError", "Something internally prevented your wish from being added. Try again later.");
+            result.addError(error);
+            return "editWish";
         }
 
         return "redirect:/wishlist/" + wishlistId;

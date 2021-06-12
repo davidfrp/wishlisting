@@ -27,6 +27,10 @@
                     <a th:href="@{/wishlist/{wishlistId}/{wishId}/unreserve(wishlistId=${wishlist.id}, wishId=${wish.id})}"
                        th:if="${isAppointee}">Fortryd</a>
 
+                    <!--/* Edit */-->
+                    <a th:href="@{/wishlist/{wishlistId}/{wishId}/edit(wishlistId=${wishlist.id}, wishId=${wish.id})}"
+                       th:if="${isAuthor}">Rediger</a>
+
                     <!--/* Delete */-->
                     <a th:href="@{/wishlist/{wishlistId}/{wishId}/delete(wishlistId=${wishlist.id}, wishId=${wish.id})}"
                        th:if="${isAuthor}">Fjern</a>

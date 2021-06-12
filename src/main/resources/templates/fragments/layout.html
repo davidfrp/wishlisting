@@ -11,10 +11,10 @@
             <ul>
                 <!--/* Logged in */-->
                 <li th:if="${loggedIn}">
-                    <a th:href="@{/profile/my-wishlists}" th:class="${currentPage == '/profile/my-wishlists' ? 'active' : ''}">Mine ønskelister</a>
+                    <a th:href="@{/profile/my-wishlists}" th:class="${currentPage == '/profile/my-wishlists'}? 'active'">Mine ønskelister</a>
                 </li>
                 <li th:if="${loggedIn}">
-                    <a th:href="@{/profile/reserved-wishes}" th:class="${currentPage == '/profile/reserved-wishes' ? 'active' : ''}">Reserverede ønsker</a>
+                    <a th:href="@{/profile/reserved-wishes}" th:class="${currentPage == '/profile/reserved-wishes'}? 'active'">Reserverede ønsker</a>
                 </li>
                 <li th:if="${loggedIn}">
                     <p th:text="${session.user_display_name}"></p>
@@ -23,9 +23,9 @@
 
                 <!--/* Not logged in */-->
                 <li th:if="not ${loggedIn}">
-                    <a th:href="@{/profile/login(redirectTo=${currentPage})}" th:class="${currentPage == '/profile/login' ? 'active' : ''}">Log ind</a><!--
+                    <a th:href="@{/profile/login(redirectTo=${currentPage})}" th:class="${currentPage == '/profile/login'}? 'active'">Log ind</a><!--
                     --><span class="separator"></span><!--
-                    --><a th:href="@{/profile/signup}" th:class="${currentPage == '/profile/signup' ? 'active' : ''}">Opret profil</a>
+                    --><a th:href="@{/profile/signup}" th:class="${currentPage == '/profile/signup'}? 'active'">Opret profil</a>
                 </li>
             </ul>
         </nav>

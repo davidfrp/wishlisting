@@ -16,7 +16,7 @@ public class WishService {
         this.wishRepository = wishRepository;
     }
 
-    public Wish createWish(Wish wish) {
+    public Wish saveWish(Wish wish) {
         return wishRepository.save(wish);
     }
 
