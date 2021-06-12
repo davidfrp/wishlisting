@@ -274,6 +274,7 @@ nav ul li a:hover, nav ul li a:focus {
 }
 nav ul li a.active {
   border-bottom: 2px solid var(--color-accent);
+  margin-bottom: 0;
 }
 
 .tag {
