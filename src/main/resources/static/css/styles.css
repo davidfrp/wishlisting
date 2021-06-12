@@ -98,7 +98,7 @@ em {
 
 .separator {
   user-select: none;
-  margin: 0 0.25rem;
+  margin: 0 1.5rem;
 }
 .separator::after {
   content: "/";
@@ -114,7 +114,7 @@ em {
 .alert * {
   color: inherit;
   margin-top: 0;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5rem;
 }
 .alert :first-child {
   font-size: 1.5rem;
@@ -237,6 +237,7 @@ nav {
   z-index: 5;
 }
 nav ul {
+  display: flex;
   list-style-type: none;
   margin: auto;
   padding: 0;
@@ -244,29 +245,32 @@ nav ul {
 }
 @media only screen and (max-width: 500px) {
   nav ul {
+    flex-direction: column;
     padding: 0 1.5rem;
     width: 100%;
   }
 }
 nav ul li {
   color: var(--color-blue-light);
+  margin-right: 1.5rem;
   float: left;
 }
-nav ul li:first-of-type {
-  margin-left: -1rem;
-}
-nav ul li:last-of-type {
-  margin-right: -1rem;
-  float: right;
+nav ul li:last-child {
+  margin-right: 0;
+  margin-left: auto;
 }
 nav ul li * {
   display: inline-block;
+  margin-right: 1.5rem;
+}
+nav ul li *:last-child {
+  margin-right: 0;
 }
 nav ul li a {
-  font-weight: 500;
   color: var(--color-bg);
+  font-weight: 500;
   padding: 0.25rem 0;
-  margin: 0.8rem 1rem;
+  margin: 0.8rem 0;
 }
 nav ul li a:hover, nav ul li a:focus {
   text-decoration: none;

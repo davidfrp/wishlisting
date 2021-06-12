@@ -17,8 +17,8 @@
                     <a th:href="@{/profile/reserved-wishes}" th:class="${currentPage == '/profile/reserved-wishes'}? 'active'">Reserverede ønsker</a>
                 </li>
                 <li th:if="${loggedIn}">
-                    <p th:text="${session.user_display_name}"></p>
-                    <a th:href="@{/profile/logout}">Log ud</a>
+                    <p th:text="${session.user_display_name}"></p><!--
+                    --><a th:href="@{/profile/logout}">Log ud</a>
                 </li>
 
                 <!--/* Not logged in */-->
