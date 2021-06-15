@@ -8,7 +8,7 @@
             <header>
                 <h1 th:text="${wishlist.name}"></h1>
                 <span th:if="${wishlist.isPrivate}" class="tag" title="Det er kun dig som kan se denne ønskeliste">Privat</span>
-                <h2 rel="author" th:text="${wishlist.author.displayName}"></h2>
+                <p rel="author" th:text="${wishlist.author.displayName}"></p>
             </header>
             <p th:text="${wishlist.description}"></p>
             <p th:if="${#lists.isEmpty(wishlist.wishes)}">Der er ingen ønsker på listen.</p>

@@ -42,6 +42,7 @@ $mobileWidth: 500px;
     font-size: inherit;
     font-style: inherit;
     font-family: inherit;
+    letter-spacing: .2px;
     background-color: inherit;
     color: inherit;
     box-sizing: border-box;
@@ -78,11 +79,7 @@ header {
 
     [rel="author"] {
         flex-basis: 100%;
-        font-size: 2rem;
-
-        &::before {
-            content: 'Lavet af ';
-        }
+        font-size: 1.225rem;
     }
 }
 

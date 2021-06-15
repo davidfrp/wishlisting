@@ -231,8 +231,8 @@ public class WishController {
 
     @GetMapping("/wishlist/{wishlistId}/{wishId}/delete")
     public String deleteWish(@PathVariable("wishlistId") long wishlistId,
-                                @PathVariable("wishId") long wishId,
-                                HttpSession session) {
+                             @PathVariable("wishId") long wishId,
+                             HttpSession session) {
 
         User author = userService.getUserFromSession(session);
 
