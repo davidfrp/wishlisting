@@ -9,12 +9,7 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
-@Table(
-        name = "users",
-        uniqueConstraints = {
-                @UniqueConstraint(name = "username_uindex", columnNames = "username")
-        }
-)
+@Table(name = "users")
 public class User {
 
     @Id
@@ -25,7 +20,7 @@ public class User {
 
     @Size(min = 2, message = "Brugernavnet skal være på mindst {min} tegn.")
     @Size(max = 32, message = "Brugernavnet må ikke være længere end {max} tegn.")
-    @Column(name = "username", length = 32, nullable = false)
+    @Column(name = "username", length = 32, nullable = false, unique = true)
     private String username;
 
     @Size(min = 2, message = "Dit navn skal være på mindst {min} tegn.")
